@@ -168,10 +168,14 @@ So, please take all of this advice as not only coming from that particular persp
 
 # Contributions and Licensing
 
-I'm always interested in receiving feedback.
+I'm always interested in receiving feedback. [Issues](https://github.com/SalusaSecondus/CryptoGotchas/issues) or [pull requests](https://github.com/SalusaSecondus/CryptoGotchas/pulls) are probably best, but any (reasonable) way to reach out will work.
+
 Is there a mistake? Tell me!
+
 Am I missing something important? Please let me know!
+
 Can you help flesh out my references or otherwise improve this? I want to hear from you!
+
 Several people have already shared pre-publication papers or other non-public materials with me to help me in drafting accurate and helpful _public_ documentation. If you have something you want to share in confidence with me but don't want me to share it on, please reach out to me so we can chat.
 
 The license I've attached to this document is somewhat of a placeholder and exists solely to have something well defined attached. If it causes problems for you for _any reason at all_ please let me know and I'll work with you to come to some mutually agreeable solution
