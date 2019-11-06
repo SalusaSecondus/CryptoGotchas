@@ -64,7 +64,7 @@ While there is some work being done on "nonce reuse resistant" cryptography, you
 * You can never go wrong with a cryptographically random nonce from a general-purpose source of cryptographic entropy.
   Any construction other than this might cause problems.
 * Many nonces have non-obvious requirements.  **Read the algorithm/protocol specific documentation** if you are doing anything other than an independent random value
-  * Related nonces in (EC)DSA are as bad as repeated (TODO: add reference).
+  * Related or shorter than expected nonces in (EC)DSA are as bad as repeated, see [how researchers managed to extract blockchain private keys by exploiting biased signature nonces](https://eprint.iacr.org/2019/023).
   * Predictable nonces in CBC gave rise to the [BEAST Attack](https://en.wikipedia.org/wiki/Transport_Layer_Security#BEAST_attack).
   * Generating a nonce by using the same cryptographic key used elsewhere has caused problems (TODO: Add reference).
 
