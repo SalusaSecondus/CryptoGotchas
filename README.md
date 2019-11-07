@@ -43,7 +43,7 @@ These are the standard things you should watch out for. Hopefully you've already
   Don't try to incorporate a secret yourself either because it won't work. (Please see [Length Extension Attacks](https://en.wikipedia.org/wiki/Length_extension_attack) and [Flickr's problems with this](http://netifera.com/research/flickr_api_signature_forgery.pdf)).
   If you need something like this, you should use a construction which handles the secret properly for you (such as [HMAC](https://en.wikipedia.org/wiki/HMAC) or AES-GCM).
 * HMAC keys should be the same length as the hash output.
-  * While HMAC keys can safely be up to the length of the underlying block (512 bits for SHA-1 and SHA-256, and 1024 bits for SHA-385 and SHA-512) there is no real value in being larger than the output size
+  * While HMAC keys can safely be up to the length of the underlying block (512 bits for SHA-1 and SHA-256, and 1024 bits for SHA-384 and SHA-512) there is no real value in being larger than the output size
   * If an HMAC key is larger than the underlying block-size it is hashed before use. This means that `HMAC(H(K), m) = HMAC(K, m)` for *all* `K` and `m` provided that `K` is sufficiently large. This will violate your security expectations.
 * Cryptographic keys can "wear out".
   The easiest solution for this is regular key rotation.
