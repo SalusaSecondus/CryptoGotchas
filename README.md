@@ -7,8 +7,7 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 It has occurred to me that there are lots of counter-intuitive "gotchas" in cryptography.
 While some of them are relatively well-known (such as "encryption does not imply integrity"),
 there are many others which are less well-known and can trip up even relatively experienced people.
-So, this is a brain-dump which will start secret (until it reaches critical mass) and then become public
-so that others can learn from my mistakes.
+So, this is a brain-dump which I hope will help other people who review and design cryptographic systems.
 
 ## What this is not
 
@@ -83,7 +82,7 @@ Of course, there are lots of gotchas here (which is the main reason the communit
   Of course, even with the unique identifier you need to be very careful and might need to whitelist which ones you accept because there may be keys with valid identifiers which shouldn't be used for this use case.
   (An example of this would be any of the massive cloud/corporate KMS systems where _every_ key has a unique identifier.)
 * Don't let your adversary select a completely arbitrary algorithm.
-  If an adversary can get you to use an arbitrary algorithm, then they can select and insecure or completely broken one.
+  If an adversary can get you to use an arbitrary algorithm, then they can select an insecure or completely broken one.
   (One example of this is [Downgrade Attacks](https://en.wikipedia.org/wiki/Downgrade_attack).)
   At most this can be from a pre-approved white-list.
   Ensure this algorithm is appropriate for the key! (I explicitly recommend people **not** use JWT and this type of [historical issue](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/) is part of why.)
@@ -91,7 +90,7 @@ Of course, there are lots of gotchas here (which is the main reason the communit
 ### How to do this
 This is one of the very few times I'll provide advice on how to do something as opposed to simply saying what not to do.
 This is because it is really important to support key rotation and be able to change algorithms.
-So, if you are encrypting data and will need to decrypt it data I recommend the following (simple) solution.
+So, if you are encrypting data and will need to decrypt it later I recommend the following (simple) solution.
 
 1. Prepend your ciphertext with a version number (4-byte integer?)
 2. Each version number corresponds to the immutable set of keys needed to decrypt that message (usually just one, but if you have multiple keys for confidentiality/encryption, this can signal both) and the exact algorithms used.
