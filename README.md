@@ -10,7 +10,7 @@ there are many others which are less well-known and can trip up even relatively 
 So, this is a brain-dump which will start secret (until it reaches critical mass) and then become public
 so that others can learn from my mistakes.
 
-## What isn't this?
+## What this is not
 
 This isn't an attempt to tell people how to do anything.
 There are already lots of excellent guides out there including [Latacora's Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html) or libraries which do most of what you need for you such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html).
