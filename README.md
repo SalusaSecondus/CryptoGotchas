@@ -56,6 +56,8 @@ These are the standard things you should watch out for. Hopefully you've already
    This means that a single ciphertext can be decrypted (using different keys) to different *valid* plaintexts.
    This is true even for AEAD ciphers such as AES-GCM and chacha20/poly1305.
    AES-GCM not being committing [broke some security properties of Facebook  Messenger](https://eprint.iacr.org/2019/016).
+ *  [Key Derivation Functions](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) may not generate different outputs when only the length is varied. 
+    ([HKDF](https://en.wikipedia.org/wiki/HKDF), my favorite KDF, is an example of this.) Most KDFs take in both an Initial Keying Material (`IKM`) an a per-derived-key `Info` value and `Length`. (They may take in other parameters but these can be ignored safely for this gotcha.) If all inputs _except_ the `Length` are kept constant, the outputs may be related. For example: `HKDF(IKM=0x0102030405060708, Info="Example Key", Length=16) = Prefix16(HKDF(IKM=0x0102030405060708, Info="Example Key", Length=32)`
 
 ## Nonces/IVs
 [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) (or [Initialization Vector (IV)](https://en.wikipedia.org/wiki/Initialization_vector)) are two different names for essentially the same thing.
