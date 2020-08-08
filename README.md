@@ -174,6 +174,28 @@ So, please take all of this advice as not only coming from that particular persp
   Now, they won't be. Not perfectly at least.
   But they are likely to be far better than anything you can write and more likely to be reviewed and patched as problems are found.
 
+## X.509 Certificates
+
+Now, X.509 Certificates aren't cryptography any more than a car is an engine. But just as people who are experts with engines will spend a lot of time worrying about and fixing cars, so too will cryptographers (unfortunately) need to deal with X.509 Certificates. Here are just a *few* of many gotchas related to these horrors. As always, if you actually need to work with them, you should read the specification ([RFC 5280](https://tools.ietf.org/html/rfc5280) and many others).
+
+* X.509 Certificates are *supposed* to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One), but most systems will happily accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means these technically invalid certificates will almost always work, except with they don't.
+  (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Two of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html) and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). They have both saved me more than once.)
+* There is nothing special about a root certificate. All that makes a certificate a "root" certificate is that its key is saved some place safe and tagged as "a root of trust."
+  * Notice that I say "key" here. Commonly the key is the real the root of trust and the "root certificate" is just convenient way to package the key.
+  * Roots don't need to be self-signed
+  * Roots will often be signed by other roots (usually for migration reasons)
+  * Signatures, experiations, certificate limitations, etc. on roots are commonly ignored. (Remember what I said about the "key" being the real root?)
+  * Root stores often have custom logic and restrictions around how specific roots can be used, except when they don't and just trust the world.
+* Certificate path building is complicated, never build it yourself.
+  * Trust an existing library or your platform. They may get it wrong, but you'll usually do even worse than they do.
+  * There can be more than one valid path from a leaf certificate to a root. (Sometimes to the same root, sometimes to different roots.)
+* More than one certificate can have the same public key.
+  * This is common when a CA needs to be renewed but they want to keep everything signed by it valid.
+  * It does happen in other cases too
+* The "Common Name" (CN) on server certificates really should be ignored now and only the [Subject Alternative Names (SANs)](https://tools.ietf.org/html/rfc5280#section-4.2.1.6) respected. Still, when something goes wrong, it's still often to blame.
+* Key and Signature types can (and often do) differ within the same chain. So an ECDSA certificate might be issued by an RSA (intermediate) CA which is then issued by a DSA CA. (Though if you find a DSA CA, you should probably run screaming to something slightly newer.)
+
+
 # Contributions and Licensing
 
 I'm always interested in receiving feedback. [Issues](https://github.com/SalusaSecondus/CryptoGotchas/issues) or [pull requests](https://github.com/SalusaSecondus/CryptoGotchas/pulls) are probably best, but any (reasonable) way to reach out will work.
