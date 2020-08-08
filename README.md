@@ -186,13 +186,21 @@ Now, X.509 Certificates aren't cryptography any more than a car is an engine. Bu
   * Roots will often be signed by other roots (usually for migration reasons)
   * Signatures, experiations, certificate limitations, etc. on roots are commonly ignored. (Remember what I said about the "key" being the real root?)
   * Root stores often have custom logic and restrictions around how specific roots can be used, except when they don't and just trust the world.
+  * Not all "Root CAs" are publicly trusted. You may be most familiar with those in your browser and in the [CA/B Forum](https://en.wikipedia.org/wiki/CA/Browser_Forum), but there are many others out there.
+  * While some (publicly-trusted) roots are good and well managed, others just pay a bunch of auditors money to claim they can be trusted. From the outside, it can be hard to know which is which.
 * Certificate path building is complicated, never build it yourself.
   * Trust an existing library or your platform. They may get it wrong, but you'll usually do even worse than they do.
   * There can be more than one valid path from a leaf certificate to a root. (Sometimes to the same root, sometimes to different roots.)
+  * Not all certificate constraints are always enforced properly if at all (such as name constraints or policies)
 * More than one certificate can have the same public key.
   * This is common when a CA needs to be renewed but they want to keep everything signed by it valid.
   * It does happen in other cases too
-* The "Common Name" (CN) on server certificates really should be ignored now and only the [Subject Alternative Names (SANs)](https://tools.ietf.org/html/rfc5280#section-4.2.1.6) respected. Still, when something goes wrong, it's still often to blame.
+* Certificate validation (is this the correct certificate and well formed?) is complicated, never build it yourself.
+  * The "Common Name" (CN) on server certificates really should be ignored now and only the [Subject Alternative Names (SANs)](https://tools.ietf.org/html/rfc5280#section-4.2.1.6) respected. Still, when something goes wrong, it's still often to blame.
+  * Wild cards only apply for a single level. So `*.example.com` matches `foo.example.com` and `bar.example.com`, but not `foor.bar.example.com`. For that you need either `*.bar.example.com` or `*.*.example.com`.
+  * [Top-Level Domains (TLDs)](https://en.wikipedia.org/wiki/Top-level_domain) are weird and need to be handled specially. (For example, the following certificates are all invalid: `*.com`, `*.uk`, and `*.ac.uk`.)
+  * Let's not even talk about [Internationalized Domain Names](https://en.wikipedia.org/wiki/Internationalized_domain_name)
+  * If you aren't dealing with HTTPS, you can often throw everything you know about name/host validation out the window, because it not longer applies.
 * Key and Signature types can (and often do) differ within the same chain. So an ECDSA certificate might be issued by an RSA (intermediate) CA which is then issued by a DSA CA. (Though if you find a DSA CA, you should probably run screaming to something slightly newer.)
 
 
