@@ -179,7 +179,7 @@ So, please take all of this advice as not only coming from that particular persp
 Now, X.509 Certificates aren't cryptography any more than a car is an engine. But just as people who are experts with engines will spend a lot of time worrying about and fixing cars, so too will cryptographers (unfortunately) need to deal with X.509 Certificates. Here are just a *few* of many gotchas related to these horrors. As always, if you actually need to work with them, you should read the specification ([RFC 5280](https://tools.ietf.org/html/rfc5280) and many others).
 
 * X.509 Certificates are *supposed* to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One), but most systems will happily accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means these technically invalid certificates will almost always work, except with they don't.
-  (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Two of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html) and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). They have both saved me more than once.)
+  (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Three of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html), [A Warm Welcome to ASN.1 and DER](https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/), and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). They have both saved me more than once.)
 * There is nothing special about a root certificate. All that makes a certificate a "root" certificate is that its key is saved some place safe and tagged as "a root of trust."
   * Notice that I say "key" here. Commonly the key is the real the root of trust and the "root certificate" is just convenient way to package the key.
   * Roots don't need to be self-signed
@@ -197,10 +197,11 @@ Now, X.509 Certificates aren't cryptography any more than a car is an engine. Bu
   * It does happen in other cases too
 * Certificate validation (is this the correct certificate and well formed?) is complicated, never build it yourself.
   * The "Common Name" (CN) on server certificates really should be ignored now and only the [Subject Alternative Names (SANs)](https://tools.ietf.org/html/rfc5280#section-4.2.1.6) respected. Still, when something goes wrong, it's still often to blame.
-  * Wild cards only apply for a single level. So `*.example.com` matches `foo.example.com` and `bar.example.com`, but not `foor.bar.example.com`. For that you need either `*.bar.example.com` or `*.*.example.com`.
+  * Wild cards only apply to the single left-most level. So `*.example.com` matches `foo.example.com` and `bar.example.com`, but not `foo.bar.example.com`. For that you need  `*.bar.example.com`. This means that both `*.*.example.com` and `foo.*.example.com` are invalid.
   * [Top-Level Domains (TLDs)](https://en.wikipedia.org/wiki/Top-level_domain) are weird and need to be handled specially. (For example, the following certificates are all invalid: `*.com`, `*.uk`, and `*.ac.uk`.)
   * Let's not even talk about [Internationalized Domain Names](https://en.wikipedia.org/wiki/Internationalized_domain_name)
   * If you aren't dealing with HTTPS, you can often throw everything you know about name/host validation out the window, because it not longer applies.
+  * Key-usages (and other extensions) can be important here and they are an entire area unto themselves. Consult detailed specification or leave this to an expert. (Note, this caution applies equally to path building.)
 * Key and Signature types can (and often do) differ within the same chain. So an ECDSA certificate might be issued by an RSA (intermediate) CA which is then issued by a DSA CA. (Though if you find a DSA CA, you should probably run screaming to something slightly newer.)
 
 
