@@ -61,7 +61,7 @@ These are the standard things you should watch out for. Hopefully you've already
 
         0x6adb5cbd648b0af649d1f507543df984
         0x6adb5cbd648b0af649d1f507543df98484ed986c43cfcec47056b1d49795d944
-  * Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, xml, etc.). Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causing you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
+  * Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, xml, etc.). Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
 
 ## Nonces/IVs
 [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) (or [Initialization Vector (IV)](https://en.wikipedia.org/wiki/Initialization_vector)) are two different names for essentially the same thing.
