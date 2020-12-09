@@ -180,6 +180,16 @@ Now, X.509 Certificates aren't cryptography any more than a car is an engine. Bu
 
 * X.509 Certificates are *supposed* to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One), but most systems will happily accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means these technically invalid certificates will almost always work, except with they don't.
   (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Three of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html), [A Warm Welcome to ASN.1 and DER](https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/), and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). These saved me more than once.)
+* Even a properly DER-encoded X.509 certificate isn't canonical and can often be modified by a third-party without invalidating the signature.
+  This is because an X.509 certificate contains three primary sub-parts: A TBS (To Be Signed) Certificate (all of the data you care about), the Signature Algorithm (which describes *how* the certificate was signed), and the Signature (which signs the TBS Certificate).
+  Since the Signature Algorithm isn't signed, anyone can change it (provided that it doesn't change *how* the signature is interpreted).
+  The Signature Algorithm field often has an optional `NULL` value, which means that there are two valid variants of it.
+  Then the Signature itself isn't guaranteed to be canonical (see elsewhere in the Gotchas) and may be able to be modified by anyone without invalidating it.
+  Non-canonical X.509 certificates actually created a real-world problem for Java in 2020.
+  The [JDK](https://en.wikipedia.org/wiki/Java_Development_Kit) contains an [explicit list of certificates which must not be trusted](https://github.com/openjdk/jdk/blob/62a03bd38719d604de2c605eea1ade8a07e89214/make/data/blacklistedcertsconverter/blacklisted.certs.pem).
+  For unknown reasons, this is actually represented as a list of hashes of the certificates.
+  This means that someone could trivially modify a blocked certificate to evade detection.
+  [JDK bug 8237995](https://github.com/openjdk/jdk/commit/62a03bd38719d604de2c605eea1ade8a07e89214) fixed this by generating different (valid) variants of the banned certificates and hashing each variant. (This really should be hashes of the public keys for due to following bullet point.)
 * There is nothing special about a root certificate. All that makes a certificate a "root" certificate is that its key is saved some place safe and tagged as "a root of trust."
   * Notice that I say "key" here. Commonly the key is the real the root of trust and the "root certificate" is just convenient way to package the key.
   * Roots don't need to be self-signed
