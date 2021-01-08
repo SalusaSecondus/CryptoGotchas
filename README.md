@@ -46,7 +46,7 @@ These are the standard things you should watch out for. Hopefully you've already
   * If an HMAC key is larger than the underlying block-size it is hashed before use. This means that `HMAC(H(K), m) = HMAC(K, m)` for *all* `K` and `m` provided that `K` is sufficiently large. This will violate your security expectations.
 * Cryptographic keys can "wear out".
   The easiest solution for this is regular key rotation.
-  If this looks like it will still be an issue for you, seek out a mode/library designed to avoid this (such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html)) or find an expert. Working around this problem is beyond the current scope of this document.
+  If this looks like it will still be an issue for you, seek out a mode/library designed to avoid this (such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html)) or find an expert. Working around this problem is beyond the current scope of this document. (Soatok has an [excellent blog post](https://soatok.blog/2020/12/24/cryptographic-wear-out-for-symmetric-encryption/) with some of the inner details and specific numbers.)
   * Generally, only worry about symmetric keys.
   * With rare exceptions is this bound by the [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem) which means that using a key for more than 2<sup>b/2</sup> operations degrades your security. You should generally remain well below this limit. I personally recommend keeping it below about 2^48 operations.
   * For anything based on a block-cipher (such as almost any use of AES), this will be a limit on the number of *blocks* encrypted with a given key.
