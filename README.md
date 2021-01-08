@@ -114,7 +114,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 
 [AES-GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode) is a really popular mode and one of the better ones for people to select. However, it doesn't always act intuitively.
 
-* Reusing a (nonce/IV, key) combination not only destroys confidentiality for the impacted ciphertexts but results in loss of integrity/authenticity for *all* ciphertexts protected by the key. (TODO: Add reference)
+* Reusing a (nonce/IV, key) combination not only destroys confidentiality for the impacted ciphertexts but results in loss of integrity/authenticity for *all* ciphertexts protected by the key. This [was known](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf) back when GCM was originally standardized and has even happened [in the real world](https://www.usenix.org/system/files/conference/woot16/woot16-paper-bock.pdf).
   Thus, as per "key wear out" and "nonces" above, for 96 bit nonces (the recommended case) you shouldn't use generate more than 2<sup>32</sup> ciphertexts with a given key and random nonces.
 * While nonces can be re-used across different keys, this is a more advanced design and should only be done cautiously.
   Note that a nonce is *still required* even if it doesn't vary. I strongly recommend 96 bits of zeros.
