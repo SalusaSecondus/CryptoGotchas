@@ -11,7 +11,9 @@ So, this is a brain-dump which I hope will help other people who review and desi
 
 ## What this is not
 
-This isn't an attempt to tell people how to do anything.
+This won't teach you cryptography or help you get started in the field. For that, see my [Getting Started](GettingStarted.md) page.
+
+This also isn't an attempt to tell people how to do anything.
 There are already lots of excellent guides out there including [Latacora's Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html) or libraries which do most of what you need for you such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html).
 In fact, this document isn't really ever going to try to tell you what to do, just what *not* to do.
 This also means that the target audience for this isn't really a junior engineer (though I hope they'll still find it useful and will help them advance).
