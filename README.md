@@ -74,7 +74,7 @@ While some people (myself included) _try_ to draw a distinction between them, th
 While there is some work being done on "nonce reuse resistant" cryptography, you should still try to avoid ever reusing these values. Just to be safe.
 
 * Nonces/IVs must **never** repeat (in a given context, usually relative to a key).
-  If you are using a random nonce/IV, a good rule of thumb is no more than *2<sup>(n-32)/2</sup>* random values where *n* is the number of bits in the nonce. For example, when using AES-GCM with a 12-byte (96-bit) random nonce, your limit is *2<sup>32</sup>* random values.
+  If you are using a random nonce/IV, a good rule of thumb is to generate no more than *2<sup>(n-32)/2</sup>* random values where *n* is the number of bits in the nonce. For example, when using AES-GCM with a 12-byte (96-bit) random nonce, your limit is *2<sup>32</sup>* random values.
 * You can never go wrong with a cryptographically random nonce from a general-purpose source of cryptographic entropy.
   Any construction other than this might cause problems.
 * Many nonces have non-obvious requirements.  **Read the algorithm/protocol specific documentation** if you are doing anything other than an independent random value
