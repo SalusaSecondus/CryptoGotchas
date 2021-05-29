@@ -83,8 +83,14 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 10. Read the [Latacora Blog](https://latacora.singles/) (especially the "Right Answers")
 11. Read my [Cryptographic Gotchas](https://github.com/SalusaSecondus/CryptoGotchas) list.
 12. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
-13. Remember (and try to follow) any company/person mentioned in this list.
-14. **KNOW YOUR LIMITS**
+13. Follow the [IACR](https://www.iacr.org/). (There are three good Twitter accounts: [official @IACRcrypto](https://twitter.com/IACRcrypto), [official @IACR_News](https://twitter.com/IACR_News), and  [unofficial @IACRePrint](https://twitter.com/IACRePrint) which follows (unreviewed) papers).)
+14. Take a look at the [crypto subreddit wiki](https://www.reddit.com/r/crypto/wiki/index) (Excellent in when I looked in May 2021.)
+  I especially recommend looking at the "How to get more involved section" because becoming part of the community is one of the most useful things.
+  Once I became part of the crypto community (back in early 2018) things became much easier for me and I started getting much better.
+  This is because when I had questions or was trying to figure things out,
+  I could easily look through the people I followed (and even ask questions) to track down the resources I needed.
+15. Remember (and try to follow) any company/person mentioned in this list.
+16. **KNOW YOUR LIMITS**
 
 # Contributions and Licensing
 Please see the [Contributions and Licensing section of the main document](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md#contributions-and-licensing).
