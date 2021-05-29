@@ -5,7 +5,7 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 **That's not really a fair title, because this won't teach you how to be a cryptographer,
 but one of my favorite games as a kid was [Quest for Glory: So You Want to be a Hero](https://en.wikipedia.org/wiki/Quest_for_Glory:_So_You_Want_to_Be_a_Hero)
 and I couldn't pass up the opportunity to pay homage to it.
-A far better title would be **"So, you want to start designing and writing cryptographic code and vaguely following what is happening the broader cryptographic community"**,
+A far better title would be **"So, you want to start designing and writing cryptographic code and vaguely following what is happening the broader cryptographic community?"**,
 but that doesn't exactly roll off the tongue now, does it?*
 
 For some reason you have decided that you need to learn more cryptography.
@@ -84,7 +84,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 11. Read my [Cryptographic Gotchas](https://github.com/SalusaSecondus/CryptoGotchas) list.
 12. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
 13. Follow the [IACR](https://www.iacr.org/). (There are three good Twitter accounts: [official @IACRcrypto](https://twitter.com/IACRcrypto), [official @IACR_News](https://twitter.com/IACR_News), and  [unofficial @IACRePrint](https://twitter.com/IACRePrint) which follows (unreviewed) papers).)
-14. Take a look at the [crypto subreddit wiki](https://www.reddit.com/r/crypto/wiki/index) (Excellent in when I looked in May 2021.)
+14. Take a look at the [crypto subreddit wiki](https://www.reddit.com/r/crypto/wiki/index) (Excellent when I looked in May 2021.)
   I especially recommend looking at the "How to get more involved section" because becoming part of the community is one of the most useful things.
   Once I became part of the crypto community (back in early 2018) things became much easier for me and I started getting much better.
   This is because when I had questions or was trying to figure things out,
