@@ -5,13 +5,13 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 **That's not really a fair title, because this won't teach you how to be a cryptographer,
 but one of my favorite games as a kid was [Quest for Glory: So You Want to be a Hero](https://en.wikipedia.org/wiki/Quest_for_Glory:_So_You_Want_to_Be_a_Hero)
 and I couldn't pass up the opportunity to pay homage to it.
-A far better title would be **"So, you want to start designing and writing cryptographic code and vaguely following what is happening the broader cryptographic community?"**,
+A far better title would be **"So, you want to start designing and writing cryptographic code and vaguely following what is happening in the broader cryptographic community?"**,
 but that doesn't exactly roll off the tongue now, does it?*
 
 For some reason you have decided that you need to learn more cryptography.
 Maybe it is personal interest or maybe your job is shifting.
 I really don't know.
-However, a surprising number of people have asked me "How do I get started?" (or more commonly variation of "How did you get started?"),
+However, a surprising number of people have asked me "How do I get started?" (or more commonly a variation of "How did you get started?"),
 so rather than assemble my notes each time for each person, I'm writing these down _once_ in an easy to share and update format.
 
 Similar to the main [Crypto Gotchas](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md), this is a personal project and definitely informal.
@@ -20,8 +20,8 @@ I have no "formal" qualifications other than that I've done work like this since
 ## Please don't
 
 This isn't an effort at gatekeeping. Anyone can learn this and I really do think that more developers should know more about cryptography.
-However, it is also a life goal of mine that developers *don't need* to know about cryptography (or *anything* from the main Crypto Gotcha's list).
-That they need to is an indictment of the existing tools and libraries out there.
+However, it is also a life goal of mine that developers *don't need* to know about cryptography (or *anything* from the main Crypto Gotcha's list),
+that they need to is an indictment of the existing tools and libraries out there.
 
 So why do I discourage this then? **This knowledge can be dangerous.**
 
@@ -53,7 +53,7 @@ This is not a course and doesn't actually aim to teach you much of anything.
 (I'm [working on a glossary](https://github.com/SalusaSecondus/CryptoGotchas/issues/15) which will help here, but who knows when that will happen.)
 Instead this is meant to be a resource list and a jumping off point for you to learn from people who actually know what they are doing and can actually teach you.
 
-If you do *everything* (or even most of the) items from this list you'll know more about cryptography than the vast majority of security specialists in the world.
+If you read *everything* (or even most things) from this list you'll know more about cryptography than the vast majority of security specialists in the world.
 However, you still won't be a cryptographer by any stretch of the imagination.
 You'll probably be able to find and correct many cryptographic mistakes and maybe even write some simple *high level* cryptographic code,
 but you should certainly not be implementing any primitives.
