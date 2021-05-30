@@ -11,7 +11,9 @@ So, this is a brain-dump which I hope will help other people who review and desi
 
 ## What this is not
 
-This isn't an attempt to tell people how to do anything.
+This won't teach you cryptography or help you get started in the field. For that, see my [Getting Started](GettingStarted.md) page.
+
+This also isn't an attempt to tell people how to do anything.
 There are already lots of excellent guides out there including [Latacora's Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html) or libraries which do most of what you need for you such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html).
 In fact, this document isn't really ever going to try to tell you what to do, just what *not* to do.
 This also means that the target audience for this isn't really a junior engineer (though I hope they'll still find it useful and will help them advance).
@@ -33,7 +35,7 @@ These are the standard things you should watch out for. Hopefully you've already
 * **READ THE STANDARDS**. Many standards documents contain explicit instructions on how to do things (such as construct nonces, check input, or what limits to apply). If you are going to use an algorithm, *read the standard defining it*.
 * Encryption doesn't (necessarily) provide integrity/authenticity.
   * No asymmetric modes provide authenticity (anyone can encrypt).
-  * Unless it _explicitly_ [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) (e.g., AES-GCM) it doesn't provide any integrity or authenticity.
+  * Unless it is _explicitly_ [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) (e.g., AES-GCM) it doesn't provide any integrity or authenticity.
 * Never use a key for more than one thing (this rule is sometimes, very carefully, violated).
   * Keys may only be used for a single algorithm. Don't use the same key for both AES and HMAC (or CMAC, or anything else).
   * This also applies to different modes of the same algorithm. Don't use the same key for AES-GCM, AES-CBC, and AES-CTR. In the asymmetric world you shouldn't use the same key for signatures, key agreement, and encryption. (Yes, this rule is commonly violated with RSA keys and while it is *usually* safe has also created problems in the past.)
@@ -69,7 +71,7 @@ These are the standard things you should watch out for. Hopefully you've already
   * Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, xml, etc.). Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
 
 ## Nonces/IVs
-[Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) (or [Initialization Vector (IV)](https://en.wikipedia.org/wiki/Initialization_vector)) are two different names for essentially the same thing.
+[Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) or [Initialization Vector (IV)](https://en.wikipedia.org/wiki/Initialization_vector) are two different names for essentially the same thing.
 While some people (myself included) _try_ to draw a distinction between them, the fact is that this is basically a lost cause and you cannot assume anything about a Nonce/IV based on the name alone.
 While there is some work being done on "nonce reuse resistant" cryptography, you should still try to avoid ever reusing these values. Just to be safe.
 
@@ -185,7 +187,7 @@ So, please take all of this advice as not only coming from that particular persp
 Now, X.509 Certificates aren't cryptography any more than a car is an engine. But just as people who are experts with engines will spend a lot of time worrying about and fixing cars, so too will cryptographers (unfortunately) need to deal with X.509 Certificates. Here are just a *few* of many gotchas related to these horrors. As always, if you actually need to work with them, you should read the specification ([RFC 5280](https://tools.ietf.org/html/rfc5280) and many others).
 
 * X.509 Certificates are *supposed* to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One), but most systems will happily accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means these technically invalid certificates will almost always work, except with they don't.
-  (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Three of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html), [A Warm Welcome to ASN.1 and DER](https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/), and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). These saved me more than once.)
+  (ASN.1 is a nightmare in itself. Truthfully, I have a soft spot in my heart for it because I think that it fills a really useful function. But I also enjoy Perl and C++, so perhaps my taste is questionable. Three of the best resources for dealing with ASN.1 are [A Layman's Guide to a Subset of ASN.1, BER, and DER](http://luca.ntop.org/Teaching/Appunti/asn1.html), [A Warm Welcome to ASN.1 and DER](https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/), and the [ASN.1 JavaScript decoder](https://lapo.it/asn1js/). These have saved me more than once.)
 * Even a properly DER-encoded X.509 certificate isn't canonical and can often be modified by a third-party without invalidating the signature.
   This is because an X.509 certificate contains three primary sub-parts: A TBS (To Be Signed) Certificate (all of the data you care about), the Signature Algorithm (which describes *how* the certificate was signed), and the Signature (which signs the TBS Certificate).
   Since the Signature Algorithm isn't signed, anyone can change it (provided that it doesn't change *how* the signature is interpreted).
