@@ -128,7 +128,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   Nonces of zero-length are not compliant with the specification and *extremely insecure and must not be used.*
 * As AES-GCM uses an underlying counter mode you cannot encrypt more than 2<sup>36</sup>-32 bytes at once as it will cause the counter to overflow.
 * AAD is also restricted in length to 2<sup>61</sup>-1 bytes due to internal encodings of the data
-* If you use different length tags with the same key, you lower the security of *all* tags produced by that key, not just the short ones. ([Authentication weaknesses in GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/ferguson2.pdf))
+* If you use different length tags with the same key, you lower the security of *all* tags produced by that key, not just the short ones. (See [Authentication weaknesses in GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/ferguson2.pdf) by Niels Ferguson for that and other interesting issues with the construction.)
 * The tags produced can't be treated as "random" values (e.g., like the outputs of a random function or a hash function). Any of the properties you expect (collision resistance, non-invertibility, etc.) may not be there. The only property you can assume they have is that specifically promised by the definition of a [MAC](https://en.wikipedia.org/wiki/Message_authentication_code). 
     * As an example, it is trivial for someone who *knows the key* to craft a message with any arbitrary tag.
     * This implies that it is trivial for someone who *knows the key* to craft multiple messages with the *same* tag
