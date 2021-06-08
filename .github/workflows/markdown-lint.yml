@@ -14,3 +14,4 @@ jobs:
       name: Markdownlint
       with:
         files: .
+	config_file: ".markdownlint.json"
