@@ -1,4 +1,5 @@
 # So, you want to be a Cryptographer?*
+
 ![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
@@ -7,6 +8,8 @@ but one of my favorite games as a kid was [Quest for Glory: So You Want to be a 
 and I couldn't pass up the opportunity to pay homage to it.
 A far better title would be **"So, you want to start designing and writing cryptographic code and vaguely following what is happening in the broader cryptographic community?"**,
 but that doesn't exactly roll off the tongue now, does it?*
+
+## Introduction
 
 For some reason you have decided that you need to learn more cryptography.
 Maybe it is personal interest or maybe your job is shifting.
@@ -17,7 +20,7 @@ so rather than assemble my notes each time for each person, I'm writing these do
 Similar to the main [Crypto Gotchas](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md), this is a personal project and definitely informal.
 I have no "formal" qualifications other than that I've done work like this since about 2006 in some form or another (and started focusing on it in about 2012).
 
-## Please don't
+### Please don't
 
 This isn't an effort at gatekeeping. Anyone can learn this and I really do think that more developers should know more about cryptography.
 However, it is also a life goal of mine that developers *don't need* to know about cryptography (or *anything* from the main Crypto Gotcha's list),
@@ -60,7 +63,7 @@ but you should certainly not be implementing any primitives.
 You definitely shouldn't start defining new designs or doing any work on your own.
 (I don't care how good or who you are, cryptography is never a task to be done alone.)
 
-# The List
+## The List
 
 1. [Dan Boneh's Cryptography I](https://www.coursera.org/learn/crypto)
   This is an excellent undergraduate-level course in cryptography and everyone should complete this. It should probably be your first stop
@@ -93,5 +96,6 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. Remember (and try to follow) any company/person mentioned in this list.
 1. **KNOW YOUR LIMITS**
 
-# Contributions and Licensing
+## Contributions and Licensing
+
 Please see the [Contributions and Licensing section of the main document](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md#contributions-and-licensing).

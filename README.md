@@ -2,14 +2,16 @@
 ![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
-## What is this?
+## Background
+
+### What is this?
 
 It has occurred to me that there are lots of counter-intuitive "gotchas" in cryptography.
 While some of them are relatively well-known (such as "encryption does not imply integrity"),
 there are many others which are less well-known and can trip up even relatively experienced people.
 So, this is a brain-dump which I hope will help other people who review and design cryptographic systems.
 
-## What this is not
+### What this is not
 
 This won't teach you cryptography or help you get started in the field. For that, see my [Getting Started](GettingStarted.md) page.
 
@@ -22,14 +24,15 @@ Instead, please look at the earlier links in the paragraph for better guidance a
 I also strongly endorse both [Dan Boneh's Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/) and [The Cryptopals Crypto Challenges](http://www.cryptopals.com/) (both of which are free).
 Instead, this is aimed at the more experienced person who already knows cryptography pretty well but hasn't memorized the ins and outs of every single algorithm and quirk in the world.
 
-# Glossary
+## Glossary
 I like to joke that being pedantic is in the job description for a cryptographer. Like many jokes, there is an kernel of truth to it. As I think of it (or people ask me), I'll add some important words here which I use in a *very specific manner*. So, for these terms you may want to forget their normal meanings and use the ones I have here. It's worth noting that these are *my* definitions and may not perfectly match standard definitions. Still, I'll do the best I can and I think that their subtle distictions may matter.
+
 * **Canonical:** When I refer to a something being "Canonical", I mean that there is only one specific (correct) representation of it and all others are incorrect. What's more, you can construct the correct one and determine if a particular represenation is the correct (canonical) one or not. For example. I may define "The canonical form of an integer is in base ten with no leading zeros. The sole exception is for the value zero, which is represented as a single '0'." In this case "5" is canonical, but "05" and "00" are not. When a format is canonical *no one* can create more than a single representation (e.g., bits on disk) for the same thing. In general, no data encodings or formats should be considered (or assumed) to be canonical *unless explicitly designed and documented to be so.*
 * **Immutable:**  When I refer to something as being immutable, this means that some category of people (or actors) cannot modify it without invalidating it. Unlike "canonical" forms (which cannot be modified by anyone), an immutable form cannot be modified by an arbitrary actor. It may be modifiable by a priveleged actor. For example, AES-GCM encrypted data can be considered immutable (because AES-GCM provides integrity and an arbitrary actor cannot modify it). However, someone who has the key could modify an AES-GCM ciphertext without invalidating it (and even do so without changing the tag).
 
-# The Gotchas
+## The Gotchas
 
-## The Basics
+### The Basics
 These are the standard things you should watch out for. Hopefully you've already learnt these all, but just in case, here they are.
 
 * **READ THE STANDARDS**. Many standards documents contain explicit instructions on how to do things (such as construct nonces, check input, or what limits to apply). If you are going to use an algorithm, *read the standard defining it*.
@@ -59,18 +62,18 @@ These are the standard things you should watch out for. Hopefully you've already
   * For anything based on a block-cipher (such as almost any use of AES), this will be a limit on the number of *blocks* encrypted with a given key.
   * For MACs, this will be the number of tags generated.
   * Some modes (such as AES-GCM) will have additional limits on usage. Check them out carefully.
- * Most ciphers are not "committing".
+* Most ciphers are not "committing".
    This means that a single ciphertext can be decrypted (using different keys) to different *valid* plaintexts.
    This is true even for AEAD ciphers such as AES-GCM and chacha20/poly1305.
    AES-GCM not being committing [broke some security properties of Facebook  Messenger](https://eprint.iacr.org/2019/016).
- *  [Key Derivation Functions](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) may not generate different outputs when only the length is varied.
+* [Key Derivation Functions](https://en.wikipedia.org/wiki/Key_derivation_function) (KDFs) may not generate different outputs when only the length is varied.
     ([HKDF](https://en.wikipedia.org/wiki/HKDF), my favorite KDF, is an example of this.) Most KDFs take in both an Initial Keying Material (`IKM`) an a per-derived-key `Info` value and `Length`. (They may take in other parameters but these can be ignored safely for this gotcha.) If all inputs _except_ the `Length` are kept constant, the outputs may be related. For example, here are the outputs of `HKDF(IKM=0x0102030405060708, Salt="mysalt", Info="myinfo", Length=X)` for `Length=16` and then `Length=32`:
 
         0x6adb5cbd648b0af649d1f507543df984
         0x6adb5cbd648b0af649d1f507543df98484ed986c43cfcec47056b1d49795d944
-  * Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, xml, etc.). Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
+* Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, xml, etc.). Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
 
-## Nonces/IVs
+### Nonces/IVs
 [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) or [Initialization Vector (IV)](https://en.wikipedia.org/wiki/Initialization_vector) are two different names for essentially the same thing.
 While some people (myself included) _try_ to draw a distinction between them, the fact is that this is basically a lost cause and you cannot assume anything about a Nonce/IV based on the name alone.
 While there is some work being done on "nonce reuse resistant" cryptography, you should still try to avoid ever reusing these values. Just to be safe.
@@ -84,7 +87,7 @@ While there is some work being done on "nonce reuse resistant" cryptography, you
   * Predictable nonces in CBC gave rise to the [BEAST Attack](https://en.wikipedia.org/wiki/Transport_Layer_Security#BEAST_attack).
   * Generating a nonce by using the same cryptographic key used elsewhere has caused problems (TODO: Add reference).
 
-## Algorithm/Key Selection for Decryption/Verification
+### Algorithm/Key Selection for Decryption/Verification
 This section isn't about selecting the proper algorithm or key for your design (see the introduction).
 It's about how to select the correct parameters for _this specific use_ of your design when decrypting or verifying data.
 Now, I know that there is a major push in the cryptographic community to eliminate as much of this negotiation as possible, and I sympathize with it, but it isn't always possible.
@@ -104,7 +107,7 @@ Of course, there are lots of gotchas here (which is the main reason the communit
   At most this can be from a pre-approved white-list.
   Ensure this algorithm is appropriate for the key! (I explicitly recommend people **not** use JWT and this type of [historical issue](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/) is part of why.)
   
-### How to do this
+#### How to do this
 This is one of the very few times I'll provide advice on how to do something as opposed to simply saying what not to do.
 This is because it is really important to support key rotation and be able to change algorithms.
 So, if you are encrypting data and will need to decrypt it later I recommend the following (simple) solution.
@@ -117,7 +120,7 @@ This will let you rotate your keys (by incrementing the version) and even move t
 It still isn't fool-proof but is a reasonable design which works for many _simple_ cases.
 If this isn't sufficient for your design, please seek out experts to talk to.
 
-## AES-GCM/GMAC
+### AES-GCM/GMAC
 
 [AES-GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode) is a really popular mode and one of the better ones for people to select. However, it doesn't always act intuitively.
 
@@ -129,21 +132,21 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 * As AES-GCM uses an underlying counter mode you cannot encrypt more than 2<sup>36</sup>-32 bytes at once as it will cause the counter to overflow.
 * AAD is also restricted in length to 2<sup>61</sup>-1 bytes due to internal encodings of the data
 * If you use different length tags with the same key, you lower the security of *all* tags produced by that key, not just the short ones. (See [Authentication weaknesses in GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/ferguson2.pdf) by Niels Ferguson for that and other interesting issues with the construction.)
-* The tags produced can't be treated as "random" values (e.g., like the outputs of a random function or a hash function). Any of the properties you expect (collision resistance, non-invertibility, etc.) may not be there. The only property you can assume they have is that specifically promised by the definition of a [MAC](https://en.wikipedia.org/wiki/Message_authentication_code). 
-    * As an example, it is trivial for someone who *knows the key* to craft a message with any arbitrary tag.
-    * This implies that it is trivial for someone who *knows the key* to craft multiple messages with the *same* tag
-    * Contrast this with tags generated by HMAC which do generally act as people expect (in that they are collision resistant and act like output from a [Random Oracle](https://en.wikipedia.org/wiki/Random_oracle))
+* The tags produced can't be treated as "random" values (e.g., like the outputs of a random function or a hash function). Any of the properties you expect (collision resistance, non-invertibility, etc.) may not be there. The only property you can assume they have is that specifically promised by the definition of a [MAC](https://en.wikipedia.org/wiki/Message_authentication_code).
+  * As an example, it is trivial for someone who *knows the key* to craft a message with any arbitrary tag.
+  * This implies that it is trivial for someone who *knows the key* to craft multiple messages with the *same* tag
+  * Contrast this with tags generated by HMAC which do generally act as people expect (in that they are collision resistant and act like output from a [Random Oracle](https://en.wikipedia.org/wiki/Random_oracle))
 * AES-GCM is not committing. (See the discussion under "The Basics" earlier).
 * *Do not use the plaintext before you've validated the tag!* This is called "releasing unverified plaintext" and is very bad.
   Some implementations (I'm looking at you OpenSSL and BouncyCastle) release the plaintext before the tag has been verified (e.g., before the `doFinal` call). While this is great from a performance perspective, the plaintext must be considered *completely untrusted* until the tag is verified. This means you mustn't do anything with it which you cannot fully roll-back. In fact, it's better to just ignore it altogether. If you are decrypting the data and handing it on to some other component, you should probably just buffer up all of the plaintext until you know it's valid.
 * Not knowing the AAD does *not* stop someone with the key from just decrypting the data.
   AES-GCM is just AES-CTR (an unauthenticated mode) plus GMAC. This means that an attacker who has the key can just decrypt the ciphertext in AES-CTR mode and ignore the extra GMAC tag. That or they can use a library like OpenSSL which will release unverified plaintext (see prior point) and get the data that way.
 
-## Signatures
+### Signatures
 [Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) are generally safe to use, but many people assume they have properties that they do not. At the core all they mean is that *without the private key, an attacker cannot find a signature over an arbitrary value for which they don't already know a signature*.
 
 * Many signatures are malleable. This means that given a *valid* signature, an attacker can often find other valid signatures over the same message.
-  * (EC)DSA have two different encodings: [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One) and "raw" (my name). This means that an attacker can convert a valid signature in one form to the other. 
+  * (EC)DSA have two different encodings: [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One) and "raw" (my name). This means that an attacker can convert a valid signature in one form to the other.
   * While the ASN.1 encoding is supposed to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded, many libraries accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means that an attacker can often use the flexibility of BER to craft an essentially infinite number of valid signatures (for the same message) once they know a single one.
   * ECDSA is mathematically malleable as well. It consists of two values `(r, s)` and given one signature it is trivial to calculate a new `s'` (equal to the order minus the original `s`) which results in a new valid signature `(r, s')` over the same message.
 * An attacker mustn't be allowed to select the actual value being validated in the signature. (The hashing step in all standard signatures defends against that as they can only select the hash pre-image, not the value of the hash.) If they could then they could trivially craft a valid signature for an arbitrary public key by (essentially) generating a random signature and seeing what message *would* be verified by that signature and then returning that message/signature pair.
@@ -159,7 +162,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 
 For more information about some of these gotchas, please see [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/). I also recommend skimming through [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779) (there is some heavy formal verification in there, but also some readable writeups of weird signature properties).
 
-## Side-Channels
+### Side-Channels
 To [quote SwiftOnSecurity](https://twitter.com/SwiftOnSecurity/status/832055497251487744), "Cryptography is nightmare magic math that cares what kind of pen you use."
 Nowhere is this more true than in the area of [side-channels](https://en.wikipedia.org/wiki/Side-channel_attack).
 It's not enough get the right answer and perform the correct calculation, you *must do it in the correct way*.
@@ -182,7 +185,7 @@ So, please take all of this advice as not only coming from that particular persp
   Now, they won't be. Not perfectly at least.
   But they are likely to be far better than anything you can write and more likely to be reviewed and patched as problems are found.
 
-## X.509 Certificates
+### X.509 Certificates
 
 Now, X.509 Certificates aren't cryptography any more than a car is an engine. But just as people who are experts with engines will spend a lot of time worrying about and fixing cars, so too will cryptographers (unfortunately) need to deal with X.509 Certificates. Here are just a *few* of many gotchas related to these horrors. As always, if you actually need to work with them, you should read the specification ([RFC 5280](https://tools.ietf.org/html/rfc5280) and many others).
 
@@ -222,8 +225,7 @@ Now, X.509 Certificates aren't cryptography any more than a car is an engine. Bu
   * Key-usages (and other extensions) can be important here and they are an entire area unto themselves. Consult detailed specification or leave this to an expert. (Note, this caution applies equally to path building.)
 * Key and Signature types can (and often do) differ within the same chain. So an ECDSA certificate might be issued by an RSA (intermediate) CA which is then issued by a DSA CA. (Though if you find a DSA CA, you should probably run screaming to something slightly newer.)
 
-
-# Contributions and Licensing
+## Contributions and Licensing
 
 I'm always interested in receiving feedback. [Issues](https://github.com/SalusaSecondus/CryptoGotchas/issues) or [pull requests](https://github.com/SalusaSecondus/CryptoGotchas/pulls) are probably best, but any (reasonable) way to reach out will work.
 
@@ -240,7 +242,7 @@ The license I've attached to this document is somewhat of a placeholder and exis
 ![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
-# Acknowledgements
+## Acknowledgements
 A special thank you to the following people and groups who have helped me with this.
 
 * The MVP Slack
