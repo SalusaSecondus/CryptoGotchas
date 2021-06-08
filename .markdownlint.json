@@ -1,5 +1,7 @@
 {
     "default": true,
     "line-length": false,
-    "blanks-around-headings": false
+    "blanks-around-headings": false,
+    "no-trailing-punctuation": false,
+    "no-inline-html": false,
 }
