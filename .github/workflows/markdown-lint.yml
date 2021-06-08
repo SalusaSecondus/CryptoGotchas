@@ -1,6 +1,8 @@
 name: Markdown linting
 
-on: push
+on:
+  push:
+  pull_request:
 
 jobs:
   build:
@@ -10,3 +12,5 @@ jobs:
     - uses: actions/checkout@master
     - uses: nosborn/github-action-markdown-cli@v1.1.1
       name: Markdownlint
+      with:
+        files: .
