@@ -256,4 +256,4 @@ A special thank you to the following people and groups who have helped me with t
 
 * The MVP Slack
 
-[existential unforgeability]: https://en.wikipedia.org/wiki/Digital%5Fsignature%5Fforgery%23Existential%5Fforgery%5F%28existential%5Funforgeability%2C%5FEUF%29 "existential unforgeability"
+[existential unforgeability]: https://en.wikipedia.org/wiki/Digital%5Fsignature%5Fforgery#Existential%5Fforgery%5F%28existential%5Funforgeability%2C%5FEUF%29 "existential unforgeability"
