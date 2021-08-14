@@ -41,8 +41,7 @@ These are the standard things you should watch out for. Hopefully you've already
   * Unless it is _explicitly_ [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) (e.g., AES-GCM) it doesn't provide any integrity or authenticity.
 * Never use a key for more than one thing (this rule is sometimes, very carefully, violated).
   * Keys may only be used for a single algorithm. Don't use the same key for both AES and HMAC (or CMAC, or anything else).
-  * This also applies to different modes of the same algorithm. Don't use the same key for AES-GCM, AES-CBC, and AES-CTR. In the asymmetric world you shouldn't use the same key for 
-  , key agreement, and encryption. (Yes, this rule is commonly violated with RSA keys and while it is *usually* safe has also created problems in the past.)
+  * This also applies to different modes of the same algorithm. Don't use the same key for AES-GCM, AES-CBC, and AES-CTR. In the asymmetric world you shouldn't use the same key for signatures, key agreement, and encryption. (Yes, this rule is commonly violated with RSA keys and while it is *usually* safe has also created problems in the past.)
   * Even with identical algorithms and modes, you still shouldn't use the same key for different purposes. For example, if you have a bidirectional channel with another party and both directions are encrypted using AES-GCM, you probably should be using separate keys for each direction.
 * Always use a [Cryptographically secure pseudorandom number generator](https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator).
   It doesn't matter if you aren't using it for anything which should have security implications. Just always use it.
