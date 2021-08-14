@@ -166,7 +166,9 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   While this isn't a security issue for *most* systems, it can definitely break systems such as consensus protocols which require different actors to be in complete agreement as to the validity of data.
   If different implementations may accept different signatures, this will break the protocols.
   Imagine if not all clients of a block-chain agreed on if blocks were valid or not? Complete confusion!
-  (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.)
+  (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.
+  Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://tunein.com/podcasts/Technology-Podcasts/Security-Cryptography-Whatever-p1482848/).)
+  
 
 
 For more information about some of these gotchas, please see [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/). I also recommend skimming through [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779) (there is some heavy formal verification in there, but also some readable writeups of weird signature properties).
