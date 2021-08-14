@@ -96,8 +96,7 @@ Of course, there are lots of gotchas here (which is the main reason the communit
 
 * Don't let your adversary select a completely arbitrary key.
   If an adversary can get you to use an arbitrary key, then it could be one they control and that you'd never expect to use.
-  This may sound ridiculous, but many asymmetric 
-  come with the public key for verification alongside of them.
+  This may sound ridiculous, but many asymmetric signatures come with the public key for verification alongside of them.
   Instead, all keys must be extremely carefully checked to ensure they are trusted before you use them.
   Two ways accomplishing this are a PKI (powerful, hard to get right, only works for asymmetric keys) or giving the keys a unique identifier and using that.
   Of course, even with the unique identifier you need to be very careful and might need to whitelist which ones you accept because there may be keys with valid identifiers which shouldn't be used for this use case.
