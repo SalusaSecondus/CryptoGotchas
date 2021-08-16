@@ -143,7 +143,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   AES-GCM is just AES-CTR (an unauthenticated mode) plus GMAC. This means that an attacker who has the key can just decrypt the ciphertext in AES-CTR mode and ignore the extra GMAC tag. That or they can use a library like OpenSSL which will release unverified plaintext (see prior point) and get the data that way.
 
 ### Signatures
-[Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) are generally safe to use, but many people assume they have properties that they do not. At the core all they mean is that *without the private key, an attacker cannot find a signature over an arbitrary value for which they don't already know a signature*.
+[Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) are generally safe to use, but many people assume they have properties that they do not. At the core all they mean is that *without the private key, an attacker cannot find a signature over an arbitrary value for which they don't already know a signature*. (a.k.a. [existential unforgeability])
 
 * Many signatures are malleable. This means that given a *valid* signature, an attacker can often find other valid signatures over the same message.
   * (EC)DSA have two different encodings: [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One) and "raw" (my name). This means that an attacker can convert a valid signature in one form to the other.
@@ -159,7 +159,16 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 * Signatures do not hide the public key used to verify the message.
   * "Public Key Recovery" is a standardized part of ECDSA. (See [SEC2](https://secg.org/sec1-v2.pdf), Section 4.1.6-4.1.7.)
   * This is slightly more challenging with RSA but is still doable as [described here](https://crypto.stackexchange.com/a/26190) and [implemented here](https://gist.github.com/divergentdave/40ac9c7224b382166c905e76595bcf73).
-
+* For many signature algorithms, in addition to the standard well-defined lists of "valid" and "invalid" signatures, there may also be a large number of "edge-case" signatures.
+  These can be thought of as signatures which are technically invalid but many implementations may accept without breaking the fundamental guarantee of signatures.
+  (Namely, these invalid signatures do not invalidate [existential unforgeability] and therefore will require use of the private key to construct.)
+  Examples of these incudes: invalid DER encodings for (EC)DSA signatures, invalid length for IEE P1363 (EC)DSA signatures, values greater than the group-order/modulus, non-canonical point encodings, etc.
+  While this isn't a security issue for *most* systems, it can definitely break systems such as consensus protocols which require different actors to be in complete agreement as to the validity of data.
+  If different implementations may accept different signatures, this will break the protocols.
+  Imagine if not all clients of a block-chain agreed on if blocks were valid or not? Complete confusion!
+  (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.
+  Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://securitycryptographywhatever.com/).)
+  
 For more information about some of these gotchas, please see [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/). I also recommend skimming through [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779) (there is some heavy formal verification in there, but also some readable writeups of weird signature properties).
 
 ### Side-Channels
@@ -246,3 +255,5 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 A special thank you to the following people and groups who have helped me with this.
 
 * The MVP Slack
+
+[existential unforgeability]: https://en.wikipedia.org/wiki/Digital%5Fsignature%5Fforgery#Existential%5Fforgery%5F%28existential%5Funforgeability%2C%5FEUF%29 "existential unforgeability"
