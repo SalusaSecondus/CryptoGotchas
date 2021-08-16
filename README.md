@@ -162,7 +162,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 * For many signature algorithms, in addition to the standard well-defined lists of "valid" and "invalid" signatures, there may also be a large number of "edge-case" signatures.
   These can be thought of as signatures which are technically invalid but many implementations may accept without breaking the fundamental guarantee of signatures.
   (Namely, these invalid signatures do not invalidate [existential unforgeability] and therefore will require use of the private key to construct.)
-  Examples of these incudes: invalid DER encodings for (EC)DSA signatures, invalid length for IEE P1363 (EC)DSA signatures, values greater than the group-order/modulus, non-canonical point encodings, etc.
+  Examples of these incudes: invalid DER encodings for (EC)DSA signatures, invalid length for IEEE P1363 (EC)DSA signatures, values greater than the group-order/modulus, non-canonical point encodings, etc.
   While this isn't a security issue for *most* systems, it can definitely break systems such as consensus protocols which require different actors to be in complete agreement as to the validity of data.
   If different implementations may accept different signatures, this will break the protocols.
   Imagine if not all clients of a block-chain agreed on if blocks were valid or not? Complete confusion!
