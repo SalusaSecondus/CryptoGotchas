@@ -169,7 +169,11 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   Imagine if not all clients of a block-chain agreed on if blocks were valid or not? Complete confusion!
   (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.
   Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://securitycryptographywhatever.com/).)
-  
+* EdDSA signatures (e.g., Ed25519) do not bind to the signed message if the signer's public key is a low-order point.
+  In other words, low-order public keys yield _universal signatures_—signatures which are valid for any message
+  (see the math of this on the [EdDSA Wikipedia page](https://en.wikipedia.org/wiki/EdDSA#Summary) and a vulnerability arising from it on page 14 of [this paper](https://eprint.iacr.org/2019/526.pdf)).
+  If this property is undesirable for an implementor, simple fixes include using a prime-order curve or rejecting low-order public keys.
+
 For more information about some of these gotchas, please see [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/). I also recommend skimming through [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779) (there is some heavy formal verification in there, but also some readable writeups of weird signature properties).
 
 ### Side-Channels
