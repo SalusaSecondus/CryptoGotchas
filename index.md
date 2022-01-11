@@ -160,10 +160,12 @@ That said, here are lots of "gotchas" for digital signatures:
   * For example in [EdDSA](https://en.wikipedia.org/wiki/EdDSA), an attacker can craft a malicious low-order public key and then create a signature valid for *all* messages.
     (This, along with other properties of low-order points, was used to break [Scuttlebutt](https://en.wikipedia.org/wiki/Secure_Scuttlebutt) in section 7.1 of [this paper by Cremers and Jackson](https://eprint.iacr.org/2019/526) from 2020.)
   * More trivially, signatures are generally over message digests, so if the hash function is broken (such as [MD5](https://eprint.iacr.org/2013/170) or [SHA-1](https://shattered.io/)) then a single signature is also valid for all messages with colliding hashes. [This was used to attack Windows Update in 2012](https://arstechnica.com/information-technology/2012/06/flame-crypto-breakthrough/).
-* Just because a signature is valid for a message and public key doesn't mean that the holder of the private key knows what the message was.
-  * Consider both the universal signature and hash collisions from an earlier point where the signatures are (by definition) valid for an unbounded collection of messages.
-  * There is also the trivial case that the signer might only know the hash and not the real message.
-  * This can also be an intentional feature (rather than a bug) as in the case of [Blind Signatures](https://eprint.iacr.org/2019/526)
+* Just because a signature is valid for a message and public key doesn't mean that the holder of the private key necessarily knows what the message was.
+  * This can be unintentional if the underlying hash function is broken (see earlier point)
+  * Otherwise this generally requires intentional behavior by the signer:
+    * Consider the maliciously created universal signature from earlier.
+    * There is the trivial case that the signer might only know the hash and not the real message.
+    * This can also be an intentional feature (rather than a bug) as in the case of [Blind Signatures](https://eprint.iacr.org/2019/526)
 * Just because a signature is valid for a given public key doesn't mean it isn't valid for other public keys.
   For that matter, given a signature and a message, an attacker can craft a public key which validates signature and message.
   This is called a [Duplicate Signature Key Selection attack](https://www.agwa.name/blog/post/duplicate_signature_key_selection_attack_in_lets_encrypt).
