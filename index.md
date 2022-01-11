@@ -165,7 +165,7 @@ That said, here are lots of "gotchas" for digital signatures:
   * Otherwise this generally requires intentional behavior by the signer:
     * Consider the maliciously created universal signature from earlier.
     * There is the trivial case that the signer might only know the hash and not the real message.
-    * This can also be an intentional feature (rather than a bug) as in the case of [Blind Signatures](https://eprint.iacr.org/2019/526)
+    * This can also be an feature (rather than a bug) as in the case of [Blind Signatures](https://eprint.iacr.org/2019/526)
 * Just because a signature is valid for a given public key doesn't mean it isn't valid for other public keys.
   For that matter, given a signature and a message, an attacker can craft a public key which validates signature and message.
   This is called a [Duplicate Signature Key Selection attack](https://www.agwa.name/blog/post/duplicate_signature_key_selection_attack_in_lets_encrypt).
