@@ -66,6 +66,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 ## The List
 
 ### Courses
+
 1. [Dan Boneh's Cryptography I](https://www.coursera.org/learn/crypto)
   This is an excellent undergraduate-level course in cryptography and everyone should complete this. It should probably be your first stop
 1. [Introduction to Cryptography by Christof Paar](https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg/videos)
@@ -73,12 +74,14 @@ You definitely shouldn't start defining new designs or doing any work on your ow
   I have heard good things about this series of lectures and suspect it to be similar in value to Boneh's course. So, I recommend it as well.
 
 ### Books
+
 1. Look at [Crypto 101](https://www.crypto101.io/) by lvh. (Though I haven't personally verified it, I am very familiar with lvh's excellent work.)
 1. Get [Serious Cryptography](https://nostarch.com/seriouscrypto) by Jean-Philippe Aumasson. This is one of the best books out there on applied cryptography.
 1. (Just for fun) Read [The Code Book](https://www.amazon.com/dp/0385495323) by Singh. I don't think this will help you be a cryptographer, but it is a fun history of the space and light introduction to the topic. If other things here are too serious then this can be a more gentle introduction to help get you ready for the rest.
 1. (Just for fun) [The Woman Who Smashed Codes](https://www.amazon.com/dp/B01M0EOI6I) by Fagone is a *fascinating* biography of Elizebeth Smith Friedman. In many ways she was the creator of modern code-breaking in the US and did much unsung work to protect the allies during both world wars.
 
 ### Activities
+
 1. [Cryptopals Crypto Challenges](https://cryptopals.com/)
   Here is the first "hands-on" resource. It takes you through building and breaking many standard cryptographic algorithms.
   It starts easy and gets *really hard* at the end. Even if you cannot complete it, you should go as far as you can and keep chipping away at it as you get better.
@@ -88,6 +91,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
   While neither of these are big distractions, I'm personally not a fan of Python and like being able to work offline.
 
 ### Other reading
+
 1. [How to Learn Cryptography as a Programmer](https://soatok.blog/2020/06/10/how-to-learn-cryptography-as-a-programmer/) by Soatok
 1. Read the source of the libraries you use.
 1. Read *tons* of specifications. You use AES-GCM? Read [NIST SP 800-38D](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf) You use HMAC? Read [RFC #2104](https://tools.ietf.org/html/rfc2104)
@@ -97,6 +101,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
 
 ### Miscellaneous
+
 1. Find people working in spaces closer to professional cryptography than you and ask them to help you (buy them beers or beverages of choice)
 1. Look at public issues on GitHub for libraries you use and see if you can contribute, or at least understand them
 1. Follow the [IACR](https://www.iacr.org/). (There are three good Twitter accounts: [official @IACRcrypto](https://twitter.com/IACRcrypto), [official @IACR_News](https://twitter.com/IACR_News), and  [unofficial @IACRePrint](https://twitter.com/IACRePrint) which follows (unreviewed) papers).)
