@@ -1,6 +1,4 @@
 # Crypto Gotchas!
-![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)
-This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
 ## Background
 
@@ -144,14 +142,30 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   AES-GCM is just AES-CTR (an unauthenticated mode) plus GMAC. This means that an attacker who has the key can just decrypt the ciphertext in AES-CTR mode and ignore the extra GMAC tag. That or they can use a library like OpenSSL which will release unverified plaintext (see prior point) and get the data that way.
 
 ### Signatures
-[Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) are generally safe to use, but many people assume they have properties that they do not. At the core all they mean is that *without the private key, an attacker cannot find a signature over an arbitrary value for which they don't already know a signature*. (a.k.a. [existential unforgeability])
+[Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) are generally safe to use, but many people assume they have properties that they do not. At their core all they mean is that *without the private key, an attacker cannot find a signature for the associated public key over an arbitrary value for which they don't already know a signature*. (a.k.a. [existential unforgeability])
+The best overview of these additional (unpromised) security properties is in  [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779)
+and I strongly recommend that everyone at least skim that paper.
+(There is lots of formal verification in there which you can probably skip, but the introduction, defined properties, and case studies are critical.)
+For an easier read, though focused entired on ECDSA, you should look at [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/).
+
+That said, here are lots of "gotchas" for digital signatures:
 
 * Many signatures are malleable. This means that given a *valid* signature, an attacker can often find other valid signatures over the same message.
-  * (EC)DSA have two different encodings: [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One) and "raw" (my name). This means that an attacker can convert a valid signature in one form to the other.
-  * While the ASN.1 encoding is supposed to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded, many libraries accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means that an attacker can often use the flexibility of BER to craft an essentially infinite number of valid signatures (for the same message) once they know a single one.
+  * (EC)DSA have several different encodings: [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One), IEEE P1363, and "raw" (my name). This means that an attacker can convert a valid signature in one form to the other.
+  * While both IEEE P1360 and raw have specific length requirements, many systems do no enforce them. (This is an example of an "edge-case" signature from later in the gotchas list.)
+  * While the ASN.1 encoding is supposed to be [DER](https://en.wikipedia.org/wiki/X.690#DER_encoding) encoded, many libraries accept any (semi-)valid [BER](https://en.wikipedia.org/wiki/X.690#BER_encoding) encoding. This means that an attacker can often use the flexibility of BER to craft an essentially infinite number of valid signatures (for the same message) once they know a single one. (more "edge-case" signatures)
   * ECDSA is mathematically malleable as well. It consists of two values `(r, s)` and given one signature it is trivial to calculate a new `s'` (equal to the order minus the original `s`) which results in a new valid signature `(r, s')` over the same message.
 * An attacker mustn't be allowed to select the actual value being validated in the signature. (The hashing step in all standard signatures defends against that as they can only select the hash pre-image, not the value of the hash.) If they could then they could trivially craft a valid signature for an arbitrary public key by (essentially) generating a random signature and seeing what message *would* be verified by that signature and then returning that message/signature pair.
 * Just because a signature is valid for a given message doesn't mean it isn't valid for other messages.
+  * For example in [EdDSA](https://en.wikipedia.org/wiki/EdDSA), an attacker can craft a malicious low-order public key and then create a signature valid for *all* messages.
+    (This, along with other properties of low-order points, was used to break [Scuttlebutt](https://en.wikipedia.org/wiki/Secure_Scuttlebutt) in section 7.1 of [this paper by Cremers and Jackson](https://eprint.iacr.org/2019/526) from 2020.)
+  * More trivially, signatures are generally over message digests, so if the hash function is broken (such as [MD5](https://eprint.iacr.org/2013/170) or [SHA-1](https://shattered.io/)) then a single signature is also valid for all messages with colliding hashes. [This was used to attack Windows Update in 2012](https://arstechnica.com/information-technology/2012/06/flame-crypto-breakthrough/).
+* Just because a signature is valid for a message and public key doesn't mean that the holder of the private key necessarily knows what the message was.
+  * This can be unintentional if the underlying hash function is broken (see earlier point)
+  * Otherwise this generally requires intentional behavior by the signer:
+    * Consider the maliciously created universal signature from earlier.
+    * There is the trivial case that the signer might only know the hash and not the real message.
+    * This can also be an feature (rather than a bug) as in the case of [Blind Signatures](https://eprint.iacr.org/2019/526)
 * Just because a signature is valid for a given public key doesn't mean it isn't valid for other public keys.
   For that matter, given a signature and a message, an attacker can craft a public key which validates signature and message.
   This is called a [Duplicate Signature Key Selection attack](https://www.agwa.name/blog/post/duplicate_signature_key_selection_attack_in_lets_encrypt).
@@ -170,8 +184,6 @@ If this isn't sufficient for your design, please seek out experts to talk to.
   (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.
   Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://securitycryptographywhatever.com/).)
   
-For more information about some of these gotchas, please see [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/). I also recommend skimming through [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779) (there is some heavy formal verification in there, but also some readable writeups of weird signature properties).
-
 ### Side-Channels
 To [quote SwiftOnSecurity](https://twitter.com/SwiftOnSecurity/status/832055497251487744), "Cryptography is nightmare magic math that cares what kind of pen you use."
 Nowhere is this more true than in the area of [side-channels](https://en.wikipedia.org/wiki/Side-channel_attack).
