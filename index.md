@@ -19,7 +19,7 @@ In fact, this document isn't really ever going to try to tell you what to do, ju
 This also means that the target audience for this isn't really a junior engineer (though I hope they'll still find it useful and will help them advance).
 If you are a junior engineer, you really shouldn't be working at this level at all.
 Instead, please look at the earlier links in the paragraph for better guidance about what you *should* be doing.
-I also strongly endorse both [Dan Boneh's Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/) and [The Cryptopals Crypto Challenges](http://www.cryptopals.com/) (both of which are free).
+I also strongly endorse both [Dan Boneh's Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/) and [The Cryptopals Crypto Challenges](https://cryptopals.com/) (both of which are free).
 Instead, this is aimed at the more experienced person who already knows cryptography pretty well but hasn't memorized the ins and outs of every single algorithm and quirk in the world.
 
 ## Glossary
