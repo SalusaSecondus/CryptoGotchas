@@ -17,7 +17,7 @@ I really don't know.
 However, a surprising number of people have asked me "How do I get started?" (or more commonly a variation of "How did you get started?"),
 so rather than assemble my notes each time for each person, I'm writing these down _once_ in an easy to share and update format.
 
-Similar to the main [Crypto Gotchas](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md), this is a personal project and definitely informal.
+Similar to the main [Crypto Gotchas](index.md), this is a personal project and definitely informal.
 I have no "formal" qualifications other than that I've done work like this since about 2006 in some form or another (and started focusing on it in about 2012).
 
 ### Please don't
