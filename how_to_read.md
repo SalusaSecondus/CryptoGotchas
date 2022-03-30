@@ -24,4 +24,34 @@ The second is specific to cryptography.
 
 ### Generic strategies
 
+A research paper generally consists of the following sections in order:
+1. Title
+2. Abstract
+3. Summary
+4. (Optional) Background
+5. Actual body of the paper
+6. Conclusion
+7. References/Citations
+
+For those of us used to reading "normal" things we instinctually want to try this in order.
+That doesn't work well.
+Instead, it's best to generally read them in this order.
+
+1. Title (You have to know what you're reading)
+2. Abstract (Gives you the shape of the paper and lets you know if it's worth your time)
+3. Summary (Like the abstract but meatier)
+4. **At the point you can sometimes stop because you may have learnt everything really necessary depending on the situation.**
+5. Background (Optional. If you already know the subject-matter, you can skip it. Otherwise this may be the most valuable part of the paper.)
+6. Skim the References (Optional. This is a great way to learn the field and figure out what you might want to read next, or even first before you re-approach this paper.)
+7. Conclusions (What was the result?)
+8. **This is the second good stopping point.**
+9. Skim the Body *skip proofs, any graphs or data-sets which seem too dense, etc.* (You're looking to understand the overall argument of the paper and are just trusting that the authors can support their arguments, so you don't need to check their work.)
+10. **This is usually where I stop.**
+11. Re-read the body, including all detailed proofs and data with an eye to understand exactly what they did, how, and catch errors if there are any.
+
+As you go, make notes.
+* If you have questions about what's going on, write them down so you don't forget them.
+* Any interesting citations should be saved for later reading.
+* If you can summarize a key part in your own words, do so. It will help you remember and understand it.
+
 ### Tricks for reading cryptographic papers
