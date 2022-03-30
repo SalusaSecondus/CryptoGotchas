@@ -55,3 +55,7 @@ As you go, make notes.
 * If you can summarize a key part in your own words, do so. It will help you remember and understand it.
 
 ### Tricks for reading cryptographic papers
+
+## Contributions and Licensing
+
+Please see the [Contributions and Licensing section of the main document](/index.md#contributions-and-licensing).
