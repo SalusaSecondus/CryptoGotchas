@@ -1,7 +1,7 @@
 # How to read a (crypto) research paper
 
 ![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)
-This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
 
 ## Introduction
 
@@ -22,6 +22,17 @@ The second is specific to cryptography.
 
 ## Reading a research paper
 
+Before you read a research paper you need to know what _your_ goal is for reading it.
+* Are you trying to learn more about the general field?
+* Are you trying to figure out if the paper matters to you?
+* Are you trying to learn the specific results from the paper?
+* Are you trying to understand and evaluate the work that lead to the result?
+* ...
+
+Each goal requires a different focus and approach.
+The strategies laid out below work reasonably well for each, but you'll need to customize them depending on your specific needs.
+What do you take notes on? What do you skip?
+
 ### Generic strategies
 
 A research paper generally consists of the following sections in order:
@@ -40,7 +51,7 @@ Instead, it's best to generally read them in this order.
 1. Title (You have to know what you're reading)
 2. Abstract (Gives you the shape of the paper and lets you know if it's worth your time)
 3. Summary (Like the abstract but meatier)
-4. **At the point you can sometimes stop because you may have learnt everything really necessary depending on the situation.**
+4. **At this point you can sometimes stop because you may have learnt everything really necessary depending on the situation.**
 5. Background (Optional. If you already know the subject-matter, you can skip it. Otherwise this may be the most valuable part of the paper.)
 6. Skim the References (Optional. This is a great way to learn the field and figure out what you might want to read next, or even first before you re-approach this paper.)
 7. Conclusions (What was the result?)
