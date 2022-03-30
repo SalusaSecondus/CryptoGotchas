@@ -115,4 +115,4 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 
 ## Contributions and Licensing
 
-Please see the [Contributions and Licensing section of the main document](https://github.com/SalusaSecondus/CryptoGotchas/blob/master/README.md#contributions-and-licensing).
+Please see the [Contributions and Licensing section of the main document](/index.md#contributions-and-licensing).
