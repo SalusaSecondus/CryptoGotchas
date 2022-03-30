@@ -16,6 +16,10 @@ Unfortunately reading a research paper can be very hard and is a different set o
 This means that lots of people (like me) will try to read some and then quickly give up when it just doesn't make sense.
 This page aims to save people the frustration that I've had to deal with.
 
+**This guidance is _not_ aimed at those actually in academia.**
+While it may be useful to you, please talk with your advisor or colleagues rather than following the random ramblings on this by someone with limited academic background.
+Your needs and goals will be different and so how you approach papers will be different.
+
 The guidance here is split into two sections.
 The first should apply to (almost) all research papers, regardless of field.
 The second is specific to cryptography.
@@ -46,7 +50,36 @@ A research paper generally consists of the following sections in order:
 
 For those of us used to reading "normal" things we instinctually want to try this in order.
 That doesn't work well.
-Instead, it's best to generally read them in this order.
+Instead, it's best to generally read them in this order below.
+
+As you read, be sure to take notes, save references you want to read later (or possibly first, if they have important prerequesites), etc.
+
+#### Title
+
+There really isn't anything to say here.
+You need to know what you're reading.
+
+#### Abstract
+
+This will give you the shape of the paper and let you know if it's worth your time.
+Sometimes it is worth bailing on a paper here if it is not relevant, too far beyond you, or just horribly written
+
+### Summary
+
+This is like the abstract but meatier.
+Your goal here is to have a rough idea of what the paper is talking about and how it gets there.
+There should definitely be some sort of problem statement and hopefully you are convinced that paper might actually address it.
+
+Some specific things to look out for:
+* Unrealistic claims (You might not be an expert, but you should already be able to sniff out some nonsense)
+* Solutions which don't match the problem (It's the classic "Everything looks like a nail when all you have is a hammer" except that the hammer is whatever cryptographic tool the authors like. That and people will commonly handwave over real-world complications for an easier technical paper. Depending on the paper, this might be alright.)
+* Are there weasel words in the claims? (Perhaps the results are really interesting, but only in very specific cases you don't care about or the authors want to make things more impressive than they really are.)
+
+**This is your first really good stopping point.**
+By now you should know if the paper is worth your time.
+You might even have some other (more interesting or useful) references to chase down.
+
+#### Background
 
 1. Title (You have to know what you're reading)
 2. Abstract (Gives you the shape of the paper and lets you know if it's worth your time)
