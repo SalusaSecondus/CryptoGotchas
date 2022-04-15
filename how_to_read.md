@@ -54,17 +54,21 @@ Instead, it's best to generally read them in this order below.
 
 As you read, be sure to take notes, save references you want to read later (or possibly first, if they have important prerequesites), etc.
 
-#### Title
+Another thing to consider is that many papers have been presented at conferences.
+Take a look at the conference's website or YouTube to see if you can find a recording of the author explaining it.
+Sometimes that is easier.
+
+#### 1. Title
 
 There really isn't anything to say here.
 You need to know what you're reading.
 
-#### Abstract
+#### 2. Abstract
 
 This will give you the shape of the paper and let you know if it's worth your time.
 Sometimes it is worth bailing on a paper here if it is not relevant, too far beyond you, or just horribly written
 
-### Summary
+### 3. Summary
 
 This is like the abstract but meatier.
 Your goal here is to have a rough idea of what the paper is talking about and how it gets there.
@@ -79,26 +83,89 @@ Some specific things to look out for:
 By now you should know if the paper is worth your time.
 You might even have some other (more interesting or useful) references to chase down.
 
-#### Background
+#### 4. Background
 
-1. Title (You have to know what you're reading)
-2. Abstract (Gives you the shape of the paper and lets you know if it's worth your time)
-3. Summary (Like the abstract but meatier)
-4. **At this point you can sometimes stop because you may have learnt everything really necessary depending on the situation.**
-5. Background (Optional. If you already know the subject-matter, you can skip it. Otherwise this may be the most valuable part of the paper.)
-6. Skim the References (Optional. This is a great way to learn the field and figure out what you might want to read next, or even first before you re-approach this paper.)
-7. Conclusions (What was the result?)
-8. **This is the second good stopping point.**
-9. Skim the Body *skip proofs, any graphs or data-sets which seem too dense, etc.* (You're looking to understand the overall argument of the paper and are just trusting that the authors can support their arguments, so you don't need to check their work.)
-10. **This is usually where I stop.**
-11. Re-read the body, including all detailed proofs and data with an eye to understand exactly what they did, how, and catch errors if there are any.
+This section is optional.
+If you already know the subject matter well, just skip it.
 
-As you go, make notes.
-* If you have questions about what's going on, write them down so you don't forget them.
-* Any interesting citations should be saved for later reading.
-* If you can summarize a key part in your own words, do so. It will help you remember and understand it.
+But, if you don't, this might be the most valuable part of the paper.
+Here you'll learn *what* the paper is talking about and start getting a feel for the context.
+If the paper is good, you'll really be able to build up your knowledge and collect a good list of references for further reading.
+(Maybe you'll realize that this paper is beyond you right now but there are some others you can read instead.)
+
+I still consider myself a beginner in many ways, so the "background" remains one of my favorite sections of a well-written paper.
+
+#### 5. References
+
+This section is optional.
+
+If the background was useful, you should probably skim the references to see what to read next (or first).
+If you background wasn't needed, then you know enough to know if the references are helpful.
+
+#### 6. Conclusion
+
+Time to jump to the end!
+
+What are the conclusions of the paper? Do they make sense? (Are they interesting?)
+
+In many cases the conclusion of the paper is its entire reason to exist.
+This is why the paper was written and published.
+
+**This is your next really good stopping point.**
+
+Perhaps all you care about is the conclusions.
+* "Algorithm FOO is broken!" Okay, let's not use it.
+* "Algorithm BAR is useful to do BAZ." Well, I don't do BAZ, so I don't care.
+* etc.
+
+One of my common jobs is to look at research papers and figure out if we care about them.
+Do we need to change our code or wrangle security teams to defend against new attacks?
+Usually, once I've read the conclusion I know enough to triage the papers and figure out if they are worth our time and I might never need the details.
+
+#### 7. Body
+
+*Finally* we reach the body of the paper.
+(Or maybe we didn't reach it because you stopped before you got here. That's okay too.)
+
+The important thing to understand is that right now your goal _isn't to read the body_, it's just to skim it.
+Get a feel for what they are saying and how they did their work.
+Don't worry about the proofs or any detailed data-sets.
+Right now, you just want to understand the overall argument and are simply *trusting* that the authors can support their arguments.
+You're not trying to check their work.
+
+**This is another good place to stop.**
+
+In fact this is my most common stopping point.
+I'm not good enough (yet) to understand, much less check, the detailed security proofs in the papers I read.
+Most of the math for the asymmetric algorithms is far beyond me.
+So, it isn't worth my time to fight through the details.
+
+#### 8. Body (detailed read)
+
+Now is when you re-read the body, including all detailed proofs and data with an eye to understand exactly what they did, how, and catch errors if there are any.
+You know the shape of the paper and their arguments so you can see how everything fits together.
+When a proof is presented, you can see how it will support the later pieces.
+
+**Congratulations, you're done.**
 
 ### Tricks for reading cryptographic papers
+
+Cryptography is hard and, like many sciences, has its own vocabulary.
+Lots of concepts have detailed and extremely precise definitions, but, if you're using this guide, they rarely matter.
+Instead, what you need is an _intuition_.
+Most of the time all you need is a rough mental approximation and familiarity with some standard notation and terms to wade through many papers.
+
+So, here following my incredibly informal (and probably inaccurate) mental model for a bunch of crypto things.
+
+* RO: A [Random Oracle](https://en.wikipedia.org/wiki/Random_oracle). Incredibly weird and critical to cryptographic proofs, but you can just think of it like a "perfect" cryptographic hash function (possibly with variable length output). As this is an imaginary construct anyway, there are an infinite number of different ROs which each map their inputs to ourputs differently. Generally, you don't care which you have as long as you have one. (This also means that papers might use more than one RO within the same paper for different purposes.)
+* Random Function: It's like a Random Oracle (but don't ask me what the difference  is). Imagine you have a set of all possible functions from a set of inputs to a set of outputs. Then, you select one of them completely at random (uniform distribution).
+* Random Permutation: Same as a random function, but the input and output sets are the same and there is a one-to-one mapping between them.
+* PRF: A [Pseudorandom Function](https://en.wikipedia.org/wiki/Pseudorandom_function_family). Basically a fake random oracle. At a first mental approximation, don't worry about the differences. (They often take a key which lets them simulate different ROs.)
+* PRP: A [Psuedorandom Permutation](https://en.wikipedia.org/wiki/Pseudorandom_permutation). Like a PRF, except the input and output spaces are identical and it defines a permutation. Think a "perfect" block-cipher. (Like PRFs, they often take keys.)
+* $$\xleftarrow{\$}$$ (A left pointing arrow with a dollar sign over it) means to randomly select an element from a set. Unless otherwise stated, all elements are equally likely to be selected. This is commonly used to select nonces or keys.
+* An "Adversary" is some limited (usually normal polynomial time) algorithm which is trying to break an algorithm.
+* The security parameter for a proof is usually notated as that many `1`s. (So, AES-128's security parameter might be notated as 1^128 or a string of 128 ones.) Why? I'm not 100% certain, but I think that it is so that [big-O notation](https://en.wikipedia.org/wiki/Big_O_notation) for complexity gives meaningful results.
+* (Yes, I know I'm missing lots of things, please tell me what)
 
 ## Contributions and Licensing
 
