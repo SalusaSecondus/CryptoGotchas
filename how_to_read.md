@@ -162,7 +162,7 @@ So, here following my incredibly informal (and probably inaccurate) mental model
 * Random Permutation: Same as a random function, but the input and output sets are the same and there is a one-to-one mapping between them.
 * PRF: A [Pseudorandom Function](https://en.wikipedia.org/wiki/Pseudorandom_function_family). Basically a fake random oracle. At a first mental approximation, don't worry about the differences. (They often take a key which lets them simulate different ROs.)
 * PRP: A [Psuedorandom Permutation](https://en.wikipedia.org/wiki/Pseudorandom_permutation). Like a PRF, except the input and output spaces are identical and it defines a permutation. Think a "perfect" block-cipher. (Like PRFs, they often take keys.)
-* $$\xleftarrow{\$}$$ (A left pointing arrow with a dollar sign over it) means to randomly select an element from a set. Unless otherwise stated, all elements are equally likely to be selected. This is commonly used to select nonces or keys.
+* \(\xleftarrow{\$}\) (A left pointing arrow with a dollar sign over it) means to randomly select an element from a set. Unless otherwise stated, all elements are equally likely to be selected. This is commonly used to select nonces or keys.
 * An "Adversary" is some limited (usually normal polynomial time) algorithm which is trying to break an algorithm.
 * The security parameter for a proof is usually notated as that many `1`s. (So, AES-128's security parameter might be notated as 1^128 or a string of 128 ones.) Why? I'm not 100% certain, but I think that it is so that [big-O notation](https://en.wikipedia.org/wiki/Big_O_notation) for complexity gives meaningful results.
 * (Yes, I know I'm missing lots of things, please tell me what)
