@@ -11,7 +11,8 @@ So, this is a brain-dump which I hope will help other people who review and desi
 
 ### What this is not
 
-This won't teach you cryptography or help you get started in the field. For that, see my [Getting Started](GettingStarted.md) page.
+This won't teach you cryptography or help you get started in the field. For that, see my [Getting Started](GettingStarted.md)
+and [How to read a research paper](how_to_read.md) pages.
 
 This also isn't an attempt to tell people how to do anything.
 There are already lots of excellent guides out there including [Latacora's Cryptographic Right Answers](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html) or libraries which do most of what you need for you such as the [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html).
