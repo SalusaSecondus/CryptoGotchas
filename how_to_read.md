@@ -27,6 +27,7 @@ The second is specific to cryptography.
 ## Reading a research paper
 
 Before you read a research paper you need to know what _your_ goal is for reading it.
+
 * Are you trying to learn more about the general field?
 * Are you trying to figure out if the paper matters to you?
 * Are you trying to learn the specific results from the paper?
@@ -40,6 +41,7 @@ What do you take notes on? What do you skip?
 ### Generic strategies
 
 A research paper generally consists of the following sections in order:
+
 1. Title
 2. Abstract
 3. Summary
@@ -75,6 +77,7 @@ Your goal here is to have a rough idea of what the paper is talking about and ho
 There should definitely be some sort of problem statement and hopefully you are convinced that paper might actually address it.
 
 Some specific things to look out for:
+
 * Unrealistic claims (You might not be an expert, but you should already be able to sniff out some nonsense)
 * Solutions which don't match the problem (It's the classic "Everything looks like a nail when all you have is a hammer" except that the hammer is whatever cryptographic tool the authors like. That and people will commonly handwave over real-world complications for an easier technical paper. Depending on the paper, this might be alright.)
 * Are there weasel words in the claims? (Perhaps the results are really interesting, but only in very specific cases you don't care about or the authors want to make things more impressive than they really are.)
@@ -114,6 +117,7 @@ This is why the paper was written and published.
 **This is your next really good stopping point.**
 
 Perhaps all you care about is the conclusions.
+
 * "Algorithm FOO is broken!" Okay, let's not use it.
 * "Algorithm BAR is useful to do BAZ." Well, I don't do BAZ, so I don't care.
 * etc.
