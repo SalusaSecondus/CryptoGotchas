@@ -173,4 +173,4 @@ So, here following my incredibly informal (and probably inaccurate) mental model
 
 ## Contributions and Licensing
 
-Please see the [Contributions and Licensing section of the main document](/index.md#contributions-and-licensing).
+Please see the [Contributions and Licensing section of the main document](index.md#contributions-and-licensing).
