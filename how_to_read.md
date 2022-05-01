@@ -44,7 +44,7 @@ A research paper generally consists of the following sections in order:
 
 1. Title
 2. Abstract
-3. Summary
+3. Introduction
 4. (Optional) Background
 5. Actual body of the paper
 6. Conclusion
@@ -70,7 +70,7 @@ You need to know what you're reading.
 This will give you the shape of the paper and let you know if it's worth your time.
 Sometimes it is worth bailing on a paper here if it is not relevant, too far beyond you, or just horribly written
 
-### 3. Summary
+### 3. Introduction
 
 This is like the abstract but meatier.
 Your goal here is to have a rough idea of what the paper is talking about and how it gets there.
