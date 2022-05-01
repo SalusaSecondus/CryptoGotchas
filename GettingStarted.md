@@ -34,7 +34,7 @@ it is really easy to learn just enough cryptography to get yourself in a lot of 
 If you don't know anything about lockpicking, you are unlikely to say "Hmm, I wonder if I can pick this random lock?"
 If you know just a little, you might say "Aha, I recognize this lock and can pick it!"
 Once you know more, you might say "I could pick, that lock, but if it breaks, I am trapped out of my apartment and the lock isn't technically owned by my anyway, and where I live even doing this is criminal...."
-Similarly in cryptography, it is easy to learn just enough to be able to assemble some cryptography which *looks* good but is catestrophically broken.
+Similarly in cryptography, it is easy to learn just enough to be able to assemble some cryptography which *looks* good but is catastrophically broken.
 (When I'm reviewing cryptographic code I love reading comments for why "this thing is safe to do even though it looks dangerous."
 The comments are almost always wrong and highlight exactly how to break the system.
 The problem is that the authors know just enough to make the arguments but not enough to see why it still isn't safe.)
