@@ -52,7 +52,7 @@ A research paper generally consists of the following sections in order:
 
 For those of us used to reading "normal" things we instinctually want to try this in order.
 That doesn't work well.
-Instead, it's best to generally read them in this order below.
+Instead, it's best to generally read them in the order below.
 
 As you read, be sure to take notes, save references you want to read later (or possibly first, if they have important prerequesites), etc.
 
