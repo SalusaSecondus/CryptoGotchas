@@ -183,7 +183,7 @@ That said, here are lots of "gotchas" for digital signatures:
   If different implementations may accept different signatures, this will break the protocols.
   Imagine if not all clients of a block-chain agreed on if blocks were valid or not? Complete confusion!
   (See [Henry de Valence's blog post](https://hdevalence.ca/blog/2020-10-04-its-25519am) for an excellent write-up of this for Ed25519 signatures.
-  Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://securitycryptographywhatever.com/).)
+  Also, a thank you to [Deirdre Connolly](https://twitter.com/durumcrustulum) who highlighted this issue in her [podcast](https://securitycryptographywhatever.buzzsprout.com/).)
   
 ### Side-Channels
 To [quote SwiftOnSecurity](https://twitter.com/SwiftOnSecurity/status/832055497251487744), "Cryptography is nightmare magic math that cares what kind of pen you use."
