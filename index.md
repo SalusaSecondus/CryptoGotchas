@@ -48,7 +48,7 @@ These are the standard things you should watch out for. Hopefully you've already
   For guidance in how to do this in many languages, please see Paragon Initiative Enterprises' [excellent blog post](https://paragonie.com/blog/2016/05/how-generate-secure-random-numbers-in-various-programming-languages) on this exact topic.
 * Hashes never provide authenticity.
   Since hashes don't incorporate a secret an attacker can just compute the correct hash over tampered data and you'll never know.
-  Don't try to incorporate a secret yourself either because it won't work. (Please see [Length Extension Attacks](https://en.wikipedia.org/wiki/Length_extension_attack) and [Flickr's problems with this](http://netifera.com/research/flickr_api_signature_forgery.pdf)).
+  Don't try to incorporate a secret yourself either because it won't work. (Please see [Length Extension Attacks](https://en.wikipedia.org/wiki/Length_extension_attack) and [Flickr's problems with this](https://archive.org/details/pdfy-HaRR7XMfTOb_RrU0)).
   If you need something like this, you should use a construction which handles the secret properly for you (such as [HMAC](https://en.wikipedia.org/wiki/HMAC) or AES-GCM).
 * HMAC keys should be the same length as the hash output.
   * While HMAC keys can safely be up to the length of the underlying block (512 bits for SHA-1 and SHA-256, and 1024 bits for SHA-384 and SHA-512) there is no real value in being larger than the output size
