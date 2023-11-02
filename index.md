@@ -147,7 +147,7 @@ If this isn't sufficient for your design, please seek out experts to talk to.
 The best overview of these additional (unpromised) security properties is in  [Seems Legit: Automated Analysis of Subtle Attacks on Protocols that Use Signatures](https://eprint.iacr.org/2019/779)
 and I strongly recommend that everyone at least skim that paper.
 (There is lots of formal verification in there which you can probably skip, but the introduction, defined properties, and case studies are critical.)
-For an easier read, though focused entired on ECDSA, you should look at [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/).
+For an easier read, though focused entirely on ECDSA, you should look at [How Not to Use ECDSA](https://yondon.blog/2019/01/01/how-not-to-use-ecdsa/).
 
 That said, here are lots of "gotchas" for digital signatures:
 
