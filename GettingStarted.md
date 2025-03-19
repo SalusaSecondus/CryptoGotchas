@@ -75,6 +75,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 
 ### Books
 
+1. [Real-World Cryptography](https://www.manning.com/books/real-world-cryptography) by David Wong is great. I've read through it and endorse it fully.
 1. Look at [Crypto 101](https://www.crypto101.io/) by lvh. (Though I haven't personally verified it, I am very familiar with lvh's excellent work.)
 1. Get [Serious Cryptography](https://nostarch.com/seriouscrypto) by Jean-Philippe Aumasson. This is one of the best books out there on applied cryptography.
 1. (Just for fun) Read [The Code Book](https://www.amazon.com/dp/0385495323) by Singh. I don't think this will help you be a cryptographer, but it is a fun history of the space and light introduction to the topic. If other things here are too serious then this can be a more gentle introduction to help get you ready for the rest.
