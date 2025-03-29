@@ -1,0 +1,55 @@
+# Block all known AI crawlers and assistants
+# from using content for training AI models.
+# Source: https://robotstxt.com/ai
+User-Agent: GPTBot
+User-Agent: ClaudeBot
+User-Agent: Claude-Web
+User-Agent: CCBot
+User-Agent: Google-Extended
+User-Agent: Applebot-Extended
+User-Agent: Facebookbot
+User-Agent: Meta-ExternalAgent
+User-Agent: Meta-ExternalFetcher
+User-Agent: diffbot
+User-Agent: PerplexityBot
+User-Agent: Omgili
+User-Agent: Omgilibot
+User-Agent: webzio-extended
+User-Agent: ImagesiftBot
+User-Agent: Bytespider
+User-Agent: Amazonbot
+User-Agent: Youbot
+User-Agent: SemrushBot-OCOB
+User-Agent: Petalbot
+User-Agent: VelenPublicWebCrawler
+User-Agent: TurnitinBot
+User-Agent: Timpibot
+User-Agent: OAI-SearchBot
+User-Agent: ICC-Crawler
+User-Agent: AI2Bot
+User-Agent: AI2Bot-Dolma
+User-Agent: DataForSeoBot
+User-Agent: AwarioBot
+User-Agent: AwarioSmartBot
+User-Agent: AwarioRssBot
+User-Agent: Google-CloudVertexBot
+User-Agent: PanguBot
+User-Agent: Kangaroo Bot
+User-Agent: Sentibot
+User-Agent: img2dataset
+User-Agent: Meltwater
+User-Agent: Seekr
+User-Agent: peer39_crawler
+User-Agent: cohere-ai
+User-Agent: cohere-training-data-crawler
+User-Agent: DuckAssistBot
+User-Agent: Scrapy
+Disallow: /
+DisallowAITraining: /
+
+# Block any non-specified AI crawlers (e.g., new
+# or unknown bots) from using content for training
+# AI models.  This directive is still experimental
+# and may not be supported by all AI crawlers.
+User-Agent: *
+DisallowAITraining: /
