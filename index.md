@@ -1,5 +1,7 @@
 # Crypto Gotchas!
 
+{% include toc.html html=content %}
+
 ## Background
 
 ### What is this?
