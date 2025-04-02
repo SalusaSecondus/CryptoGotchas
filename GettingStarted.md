@@ -72,6 +72,8 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. [Introduction to Cryptography by Christof Paar](https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg/videos)
   (I haven't personally verified this one.)
   I have heard good things about this series of lectures and suspect it to be similar in value to Boneh's course. So, I recommend it as well.
+1. [Cryptography 101 with Alfred Menezes](https://cryptography101.ca/)
+  Once again, I haven't personally reviewed this, but Menezes is an excellent professor and cryptographer. Going through these courses is on my personal todo list.
 
 ### Books
 
