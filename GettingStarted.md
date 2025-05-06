@@ -101,7 +101,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. Read [The Stick-Figure Guide to AES](http://www.moserware.com/2009/09/stick-figure-guide-to-advanced.html)
 1. Read the [Latacora Blog](https://latacora.singles/) (especially the "Right Answers")
 1. Read my [Cryptographic Gotchas](./index.md) list.
-1. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
+1. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://web.archive.org/web/20221003122612/https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
 
 ### Miscellaneous
 
