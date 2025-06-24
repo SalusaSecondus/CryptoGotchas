@@ -1,6 +1,6 @@
 # Domain Separation
 
-If you ask cryptographers whether domain separation matters, they'll almost always agree that it does. There have even been several security problems with protocols because it's been missing. And in the world of formal security proofs (or formal verification) researches absolutely pay attenion to it.
+If you ask cryptographers whether domain separation matters, they'll almost always agree that it does. There have even been several security problems with protocols because it's been missing. And in the world of formal security proofs (or formal verification) researchers absolutely pay attention to it.
 
 The problem is when you actually ask anyone to define it.
 
@@ -20,7 +20,7 @@ It protects you against tons of theoretical problems by making them simply impos
 
 ## Things which use domain separation
 
-Though domain separation as a concept can be used with just abouut anything, there are a few primitives where you see (and need) it more commonly:
+Though domain separation as a concept can be used with just about anything, there are a few primitives where you see (and need) it more commonly:
 
 - [Random Oracles](https://en.wikipedia.org/wiki/Random_oracle) / [Hash Functions](https://en.wikipedia.org/wiki/Hash_function):
   These are a building block of many other cryptographic constructions and if you use the same hash function in different parts of the protocol, sometimes public parts of the protocol can reveal useful state about secret parts.
@@ -40,7 +40,7 @@ Though domain separation as a concept can be used with just abouut anything, the
 
 If you are doing two different things, you should use two different keys.
 (They might be derived from single source.)
-This alone protrects you from many things.
+This alone protects you from many things.
 
 Examples:
 - TLS uses different keys for each direction of traffic.
