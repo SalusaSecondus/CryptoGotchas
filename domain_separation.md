@@ -1,6 +1,6 @@
 # Domain Separation
 
-If you ask cryptographers whether domain separation matters, they'll almost always agree. There have even been several security problems with protocols because it's been missing. And in the world of formal security proofs (or formal verification) researches absolutely pay attenion to it.
+If you ask cryptographers whether domain separation matters, they'll almost always agree that it does. There have even been several security problems with protocols because it's been missing. And in the world of formal security proofs (or formal verification) researches absolutely pay attenion to it.
 
 The problem is when you actually ask anyone to define it.
 
