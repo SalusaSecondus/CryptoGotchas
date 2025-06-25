@@ -1,3 +1,4 @@
+{% include breadcrumbs.html %}
 # How to read a (crypto) research paper
 
 ![Creative Commons License: BY](https://i.creativecommons.org/l/by/4.0/88x31.png)

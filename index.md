@@ -1,3 +1,4 @@
+{% include breadcrumbs.html %}
 # Crypto Gotchas!
 
 ## Background
