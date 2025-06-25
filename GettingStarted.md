@@ -100,7 +100,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. Read the source of the libraries you use.
 1. Read *tons* of specifications. You use AES-GCM? Read [NIST SP 800-38D](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf) You use HMAC? Read [RFC #2104](https://tools.ietf.org/html/rfc2104)
 1. Read [The Stick-Figure Guide to AES](http://www.moserware.com/2009/09/stick-figure-guide-to-advanced.html)
-1. Read the [Latacora Blog](https://latacora.singles/) (especially the "Right Answers")
+1. Read the [Latacora Blog](https://www.latacora.com/blog/) (especially the "Right Answers")
 1. Read my [Cryptographic Gotchas](./index.md) list.
 1. Read [If You’re Typing the Letters A-E-S Into Your Code You’re Doing It Wrong](https://web.archive.org/web/20221003122612/https://www.e-x-a.org/stuff/articles/typing-a-e-s/) by Thomas Ptacek
 
@@ -108,7 +108,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 
 1. Find people working in spaces closer to professional cryptography than you and ask them to help you (buy them beers or beverages of choice)
 1. Look at public issues on GitHub for libraries you use and see if you can contribute, or at least understand them
-1. Follow the [IACR](https://www.iacr.org/). (There are three good Twitter accounts: [official @IACRcrypto](https://twitter.com/IACRcrypto), [official @IACR_News](https://twitter.com/IACR_News), and  [unofficial @IACRePrint](https://twitter.com/IACRePrint) which follows (unreviewed) papers).) I also recommend you read my [How to read a research paper](how_to_read.md) page for help in approaching these.
+1. Follow the [IACR](https://www.iacr.org/). (There are two good Bluesky accounts: [official @IACRCrypto](https://bsky.app/profile/iacrcrypto.bsky.social) and [unofficial @eprint.ing.bot](https://bsky.app/profile/eprint.ing.bot) which follows (unreviewed) papers).) I also recommend you read my [How to read a research paper](how_to_read.md) page for help in approaching these.
 1. Take a look at the [crypto subreddit wiki](https://www.reddit.com/r/crypto/wiki/index) (Excellent when I looked in May 2021.)
   I especially recommend looking at the "How to get more involved section" because becoming part of the community is one of the most useful things.
   Once I became part of the crypto community (back in early 2018) things became much easier for me and I started getting much better.
