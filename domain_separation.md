@@ -99,7 +99,7 @@ If there is absolutely no way to misinterpret the data from one domain as data f
 (Length Separation is just a special case of this.)
 Unfortunately, this is extremely hard to get right.
 Many different data formats can coexist in a single file (sometimes called a [polyglot file](https://en.wikipedia.org/wiki/Polyglot_(computing))).
-Even if you have a single data type with different content, different parsers may extra different fields.
+Even if you have a single data type with different content, different parsers may extract different fields.
 (Consider an invalid JSON object with duplicate key names.
 Some parsers may use the first value, some the last, others might concatenate.)
 
