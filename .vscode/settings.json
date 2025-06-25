@@ -8,5 +8,8 @@
         "HPKE",
         "Indifferentiability",
         "SPHINCS"
+    ],
+    "cSpell.ignoreWords": [
+        "Comparse"
     ]
 }

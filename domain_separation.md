@@ -1,6 +1,8 @@
 # Domain Separation
 
-If you ask cryptographers whether domain separation matters, they'll almost always agree that it does. There have even been several security problems with protocols because it's been missing. And in the world of formal security proofs (or formal verification) researchers absolutely pay attention to it.
+If you ask cryptographers whether domain separation matters, they'll almost always agree that it does.
+There have even been several security problems with protocols because it's been missing.
+And in the world of formal security proofs (or formal verification) researchers absolutely pay attention to it.
 
 The problem is when you actually ask anyone to define it.
 
@@ -69,7 +71,7 @@ Like that one this requires that each domain be assigned an unambiguous unique s
 This is often harder than it seems, but there is a simple, common, case.
 If you have a limited number of domains known from the start, you can just assign each a unique name *of the same length.*
 It is critically important that all the names are of equal length to avoid canonicalization confusion.
-(Technically, all that is required is that the domain names are a [prefix-free code](https://en.wikipedia.org/wiki/Prefix_code).
+(Technically, all that is required is that the resulting data is injective, but it's hard to get right.
 Having them all be of the same length is a trivial way to accomplish this.
 Another way is to have a designated terminal element of all the names.
 This is one of those places where consulting an expert is a good idea.)
@@ -81,6 +83,7 @@ One of the nice things about this pattern is that it can be applied to many diff
 - You can include the domain separator with data you're going to hash. HPKE and SHL-DSA do this throughout. ML-DSA includes the parameters when deriving keys to provide separation there as well.
 - You could include a constant length trailing value.
   ML-KEM does this with algorithm parameters to achieve domain separation for its key derivation.
+- [Comparse](https://eprint.iacr.org/2023/1390) provides a good writeup on how to safely serialize data.
 
 ### Length Separation
 
@@ -102,6 +105,8 @@ Some parsers may use the first value, some the last, others might concatenate.)
 
 In some ways the [including as input](#including-the-domain-as-input) strategy is a special case of this one.
 
+[Comparse](https://eprint.iacr.org/2023/1390) provides a good writeup on how to safely serialize data.
+
 ## Educational Examples
 
 - [HPKE](https://www.rfc-editor.org/rfc/rfc9180.html) does an excellent job of domain separation.
@@ -111,6 +116,23 @@ In some ways the [including as input](#including-the-domain-as-input) strategy i
   Most of the time it includes an "address" in the data being hashed so that each use of the hash function is distinct.
   Unfortunately, the designers forgot to include this separation *once* (when they were using some data directly without a hash first) and that resulted in an [attack](https://eprint.iacr.org/2022/1061.pdf).
   While this is not described as a "domain separation" flaw, I consider it one because it matches the pattern we see elsewhere.
-- [ML-KEM (FIPS 203 / Kyber)](https://csrc.nist.gov/pubs/fips/203/final) [added domain separation](https://www.federalregister.gov/documents/2024/08/14/2024-17956/announcing-issuance-of-federal-information-processing-standards-fips-fips-203-module-lattice-based) to its key-derivation algorithm right before before publication due to [public comment](https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/5CT4NC_6zRI/m/QZ7jLXEiCAAJ)
+- [ML-KEM (FIPS 203 / Kyber)](https://csrc.nist.gov/pubs/fips/203/final) [added domain separation](https://www.federalregister.gov/documents/2024/08/14/2024-17956/announcing-issuance-of-federal-information-processing-standards-fips-fips-203-module-lattice-based) to its key-derivation algorithm right before before publication due to [public comment](https://groups.google.com/a/list.nist.gov/g/pqc-forum/c/5CT4NC_6zRI/m/QZ7jLXEiCAAJ).
   The concern was that someone might (incorrectly) use the same (seed) key with multiple algorithms (or parameter sets with ML-KEM) and get related keys out when they should be completely separate.
   By including domain separation, ML-KEM ensures that different algorithms will always derive unrelated cryptographic keys.
+
+## Final Thoughts
+
+Proper domain separation is rarely considered in cryptographic designs and it's only within the past few years that we've seen people actively caring about it.
+Many (most?) research papers just assume you can unambiguously concatenate data and parse it out again.
+Many AAD and other constructions just concatenate data and don't realize that this doesn't work.
+I have even seen cryptographers completely *dismiss* data-serialization as "not cryptography" and not worth their time.
+(In this case someone wanted to sign a complicated piece of data and the academic cryptographer refused to review how the data was converted into the actual bytes to sign.)
+
+I truly believe that domain separation (and its partner canonicalization) are *categories* of security concerns that you can map many different specific instances onto.
+(This is much in the same way that "injection" attacks is a large family of attacks.)
+Even if we cannot see any attacks against our systems due to lack of domain separation we must include those safeguards.
+I have never seen a case where a designer has regretted extra domain separation while the internet is littered with vulnerabilities from omitting it.
+
+I leave you with a [quote from my friend str4d](https://bsky.app/profile/str4d.xyz/post/3llbbvfg5gs2x).
+
+> One of the key takeaways: ensure domain separation is present everywhere! It removes entire classes of bugs 🐛
