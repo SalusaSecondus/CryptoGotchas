@@ -104,7 +104,7 @@ In some ways the [including as input](#including-the-domain-as-input) strategy i
 
 ## Educational Examples
 
-- [HKDF](https://www.rfc-editor.org/rfc/rfc9180.html) does an excellent job of domain separation.
+- [HPKE](https://www.rfc-editor.org/rfc/rfc9180.html) does an excellent job of domain separation.
   This is why both `LabeledExtract` and `LabeledExpand` exist. 
 - Overall, [SPHINCS+](https://sphincs.org/) does a good job with domain separation.
   It's a [hash based signature scheme](https://en.wikipedia.org/wiki/Hash-based_cryptography) and so hashes lots of data in different contexts.
