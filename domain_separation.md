@@ -25,6 +25,7 @@ Though domain separation as a concept can be used with just about anything, ther
 - [Random Oracles](https://en.wikipedia.org/wiki/Random_oracle) / [Hash Functions](https://en.wikipedia.org/wiki/Hash_function):
   These are a building block of many other cryptographic constructions and if you use the same hash function in different parts of the protocol, sometimes public parts of the protocol can reveal useful state about secret parts.
   This exact problem is described in [Separate Your Domains: NIST PQC KEMs, Oracle Cloning and Read-Only Indifferentiability](https://eprint.iacr.org/2020/241) where Bellare et. al. broke a bunch of the PQ-KEM submissions.
+  That paper is an excellent reference in general to how you can use domain separation to create multiple Random Oracles out of a single one (complete with security proofs).
 - Ciphertexts:
   If two different systems encrypt ciphertexts without domain separation, then an attacker can take a ciphertext from one system and hand it to the other (which may misinterpret it).
   I've personally witnessed a system which used the same key to encrypt trusted URLs in a redirect flow and customer data in a different flow.
@@ -45,7 +46,8 @@ This alone protects you from many things.
 Examples:
 - TLS uses different keys for each direction of traffic.
 This means that an attacker cannot simply reflect traffic back to a sender and make them accept it.
-- ***???***
+- I have designed multiple systems where different types of data were encrypted by different keys.
+  This was helpful even when the same system had access to all of the keys.
 
 ### Different AAD
 
@@ -77,6 +79,8 @@ One of the nice things about this pattern is that it can be applied to many diff
 - You can prepend the domain-separator to the data you're going to sign. SLH-DSA ([FIPS 205](https://csrc.nist.gov/pubs/fips/205/final), based on SPHINCS<sup>+</sup>) does this with a single byte value to indicate if the signed data was pre-hashed or not.
 - You can prepend your plaintext with the domain separator.
 - You can include the domain separator with data you're going to hash. HPKE and SHL-DSA do this throughout. ML-DSA includes the parameters when deriving keys to provide separation there as well.
+- You could include a constant length trailing value.
+  ML-KEM does this with algorithm parameters to achieve domain separation for its key derivation.
 
 ### Length Separation
 
