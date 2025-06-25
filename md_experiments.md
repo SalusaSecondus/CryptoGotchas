@@ -1,6 +1,7 @@
+{% include breadcrumbs.html %}
+
 # Markdown experiments
 
-{% include breadcrumbs.html %}
 
 Foo bar
 
