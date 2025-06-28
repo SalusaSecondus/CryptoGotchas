@@ -62,6 +62,14 @@ These are the standard things you should watch out for. Hopefully you've already
   * For anything based on a block-cipher (such as almost any use of AES), this will be a limit on the number of *blocks* encrypted with a given key.
   * For MACs, this will be the number of tags generated.
   * Some modes (such as AES-GCM) will have additional limits on usage. Check them out carefully.
+* Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, [email headers](https://datatracker.ietf.org/doc/html/rfc5322), etc.). Many formats also support a concept of unordered set where the order of elements doesn't matter (ASN.1 [ProtoBuf](https://protobuf.dev/), etc.) . Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
+
+### Miscellaneous
+There are some gotchas that I haven't figured out how to categorize yet.
+They aren't quite "basic," but either they apply to lots of things or I don't have enough to say about them yet.
+Maybe I just haven't gotten around to organizing them?
+(Or maybe they have an entire page dedicated to them and just need to be linked from somewhere.)
+
 * Most ciphers are not "committing".
    This means that a single ciphertext can be decrypted (using different keys) to different *valid* plaintexts.
    This is true even for AEAD ciphers such as AES-GCM and chacha20/poly1305.
@@ -71,7 +79,6 @@ These are the standard things you should watch out for. Hopefully you've already
 
         0x6adb5cbd648b0af649d1f507543df984
         0x6adb5cbd648b0af649d1f507543df98484ed986c43cfcec47056b1d49795d944
-* Don't assume that any encoding is canonical unless it is explicitly designed to be so. While there are the obvious cases which ignore whitespace (hex, base64, yaml, json, xml, etc.) many also ignore capitalization (hex, [email headers](https://datatracker.ietf.org/doc/html/rfc5322), etc.). Many formats also support a concept of unordered set where the order of elements doesn't matter (ASN.1 [ProtoBuf](https://protobuf.dev/), etc.) . Interestingly, [Base64](https://en.wikipedia.org/wiki/Base64) (even ignoring whitespace) isn't canonical either! Since the trailing padding (which is often optional) causes you to ignore bits, the ignored bits can be anything. For example, while `example` would normally be encoded as `ZXhhbXBsZQ==`, there are many other possible values for it including `ZXhhbXBsZR==`, `ZXhhbXBsZY==`, and `ZXhhbXBsZf==`.
 * Public keys **are public** and any system which assumes that they remain secret is likely broken. Since asymmetric algorithms/implementations assume that public keys are public, they rarerly take any precautions to protect them. RSA ciphertexts are all smaller than the public key so you can use the [German Tank Problem](https://en.wikipedia.org/wiki/German_tank_problem) to estimate the public key. (This [broke privacy guarantees](https://eprint.iacr.org/2014/728.pdf) of an Australian government system called PLAID.) Many signatures permit key recovery. (See the "Signatures" section for more information.) Finally, since the public keys aren't secret, many implementations do not use constant-time (or side-channel-free) algorithms when handling them which opens the public keys up to "compromise".
 * [Domain Separation](domain_separation.md) is a critical property which ensures that data cannot be confused across different uses.
   This subject is complicated enough that I have [given it it's own page](domain_separation.md).
