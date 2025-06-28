@@ -279,5 +279,7 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 A special thank you to the following people and groups who have helped me with this.
 
 * The MVP Slack
+* My coworkers over the years who keep asking me interesting quesions and teaching me useful things
+* My extremely patient (non-cryptographer) wife who sits and lets me explain cryptography to her until I have figured out exactly how to communicate the complicated concepts
 
 [existential unforgeability]: https://en.wikipedia.org/wiki/Digital%5Fsignature%5Fforgery#Existential%5Fforgery%5F%28existential%5Funforgeability%2C%5FEUF%29 "existential unforgeability"
