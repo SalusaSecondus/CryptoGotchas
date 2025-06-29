@@ -23,3 +23,9 @@ Code block:
 ```
 H<sub>2</sub>0 or 2<sup>32</sup>
 ```
+
+\(\lambda\)
+
+Now Alice has a keypair A<sub>s</sub> and A<sub>p</sub> (her private/secret and public keys respectively).
+She can use this to generate a signature \(sig=\texttt{Sign}(A_s, M)\) and send that to B along with `M`.
+Bob can then just check that \(\texttt{verify}(A_p, M, sig)\) is `true` and know that Alice sent the message.
