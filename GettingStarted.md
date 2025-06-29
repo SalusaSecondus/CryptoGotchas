@@ -110,7 +110,7 @@ You definitely shouldn't start defining new designs or doing any work on your ow
 1. Look at public issues on GitHub for libraries you use and see if you can contribute, or at least understand them
 1. Follow the [IACR](https://www.iacr.org/). (There are two good Bluesky accounts: [official @IACRCrypto](https://bsky.app/profile/iacrcrypto.bsky.social) and [unofficial @eprint.ing.bot](https://bsky.app/profile/eprint.ing.bot) which follows (unreviewed) papers).) I also recommend you read my [How to read a research paper](how_to_read.md) page for help in approaching these.
 1. Take a look at the [crypto subreddit wiki](https://www.reddit.com/r/crypto/wiki/index) (Excellent when I looked in May 2021.)
-  I especially recommend looking at the "How to get more involved section" because becoming part of the community is one of the most useful things.
+  I especially recommend looking at the "How to get more involved section" because becoming part of the community is one of the most useful things.<!-- markdown-link-check-disable-line -->
   Once I became part of the crypto community (back in early 2018) things became much easier for me and I started getting much better.
   This is because when I had questions or was trying to figure things out,
   I could easily look through the people I followed (and even ask questions) to track down the resources I needed.
