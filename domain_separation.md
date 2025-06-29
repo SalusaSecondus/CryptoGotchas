@@ -1,4 +1,3 @@
-{% include breadcrumbs.html %}
 # Domain Separation
 
 If you ask cryptographers whether domain separation matters, they'll almost always agree that it does.
@@ -47,6 +46,7 @@ If you are doing two different things, you should use two different keys.
 This alone protects you from many things.
 
 Examples:
+
 - TLS uses different keys for each direction of traffic.
 This means that an attacker cannot simply reflect traffic back to a sender and make them accept it.
 - I have designed multiple systems where different types of data were encrypted by different keys.
@@ -111,7 +111,7 @@ In some ways the [including as input](#including-the-domain-as-input) strategy i
 ## Educational Examples
 
 - [HPKE](https://www.rfc-editor.org/rfc/rfc9180.html) does an excellent job of domain separation.
-  This is why both `LabeledExtract` and `LabeledExpand` exist. 
+  This is why both `LabeledExtract` and `LabeledExpand` exist.
 - Overall, [SPHINCS+](https://sphincs.org/) does a good job with domain separation.
   It's a [hash based signature scheme](https://en.wikipedia.org/wiki/Hash-based_cryptography) and so hashes lots of data in different contexts.
   Most of the time it includes an "address" in the data being hashed so that each use of the hash function is distinct.

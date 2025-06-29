@@ -4,4 +4,5 @@
     "blanks-around-headings": false,
     "no-trailing-punctuation": false,
     "no-inline-html": false,
+    "no-emphasis-as-header": false
 }
