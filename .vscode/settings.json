@@ -1,15 +1,31 @@
 {
     "cSpell.words": [
-        "Bellare",
+        "CMAC",
+        "Cryptopals",
         "decryptors",
         "encryptor",
         "FIPS",
+        "GMAC",
         "HKDF",
+        "HMAC",
         "HPKE",
         "Indifferentiability",
-        "SPHINCS"
+        "injective",
+        "SPHINCS",
+        "unforgeability",
+        "PKCS"
     ],
     "cSpell.ignoreWords": [
-        "Comparse"
+        "Cremers",
+        "Latacora's",
+        "Niels",
+        "Shamir's",
+        "Shoup's",
+        "Soatok",
+        "Bellare",
+        "Boneh's",
+        "Comparse",
+        "Flickr's",
+        "IACR's"
     ]
 }
