@@ -11,7 +11,7 @@ H~2~0 or 2^32^.
 In-line code: `H~2~0 or 2^32^`.
 Code block:
 
-```
+```plain
 H~2~0 or 2^32^
 ```
 
@@ -20,7 +20,7 @@ H<sub>2</sub>0 or 2<sup>32</sup>.
 In-line code: `H<sub>2</sub>0 or 2<sup>32</sup>`.
 Code block:
 
-```
+```plain
 H<sub>2</sub>0 or 2<sup>32</sup>
 ```
 
