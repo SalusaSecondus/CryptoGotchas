@@ -1,4 +1,3 @@
-{% include breadcrumbs.html %}
 # Authenticity
 
 In my grand scheme of bundling up what I see as common themes from different areas
