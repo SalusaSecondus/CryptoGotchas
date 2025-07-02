@@ -11,9 +11,10 @@
         "HPKE",
         "Indifferentiability",
         "injective",
+        "PKCS",
+        "signcryption",
         "SPHINCS",
-        "unforgeability",
-        "PKCS"
+        "unforgeability"
     ],
     "cSpell.ignoreWords": [
         "Cremers",
