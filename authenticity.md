@@ -98,3 +98,12 @@ Importantly, signcryption also provides [non-repudiation](https://en.wikipedia.o
 (So do the flawed schemes above.)
 This means that the resulting message and signature can be used to prove (to a third party) that the sender actually signed the message.
 (The recipient might need to reveal their private key as part of the proof, but that's okay in this model.)
+
+
+# DO NOT PUBLISH: Notes
+
+- Define different security models (insider/outsider) if needed
+   - Outsider: Attacker doesn't know any of the private keys (sender's auth or recipient's decrypt)
+   - Insider: Attacker knows the *sender's* private key (can they decrypt messages sent by that sender)
+- Mention HPKE and categorize appropriately
+- A few closing words of wisdom
